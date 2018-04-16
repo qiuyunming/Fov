@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.ifsim.vairline.core.article.dao.ArticleTendencyDao">
+	<insert id="insert"
+		parameterType="org.ifsim.vairline.core.article.domain.ArticleTendency"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO t_article_tendency
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test=" username != null">
+				username,
+			</if>
+			<if test=" photo != null">
+				photo,
+			</if>
+			<if test=" targetId != null">
+				target_id,
+			</if>
+			<if test=" type != null">
+				type,
+			</if>
+			<if test=" isComment != null">
+				is_comment,
+			</if>
+			<if test=" targetUsername != null">
+				target_username,
+			</if>
+			<if test="isViewed != null">
+				is_viewed,
+			</if>
+			<if test=" createUser != null">
+				create_user,
+			</if>
+			<if test=" updateUser != null">
+				update_user
+			</if>
+		</trim>
+		VALUES
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test=" username != null">
+				#{username},
+			</if>
+			<if test=" photo != null">
+				#{photo},
+			</if>
+			<if test=" targetId != null">
+				#{targetId},
+			</if>
+			<if test=" type != null">
+				#{type},
+			</if>
+			<if test=" isComment != null">
+				#{isComment},
+			</if>
+			<if test=" targetUsername != null">
+				#{targetUsername},
+			</if>
+			<if test="isViewed != null">
+				#{isViewed},
+			</if>
+			<if test=" createUser != null">
+				#{createUser},
+			</if>
+			<if test=" updateUser != null">
+				#{updateUser}
+			</if>
+		</trim>
+	</insert>
+
+	<delete id="delete"
+		parameterType="org.ifsim.vairline.core.article.domain.ArticleTendency">
+		DELETE
+		FROM t_article_tendency
+		WHERE id = #{id}
+	</delete>
+
+	<update id="update"
+		parameterType="org.ifsim.vairline.core.article.domain.ArticleTendency">
+		UPDATE t_article_tendency
+		<trim prefix="SET" suffixOverrides=",">
+			<if test=" username != null">
+				username = #{username},
+			</if>
+			<if test=" photo != null">
+				photo = #{photo},
+			</if>
+			<if test=" targetId != null">
+				target_id = #{targetId},
+			</if>
+			<if test=" type != null">
+				type = #{type},
+			</if>
+			<if test=" isComment != null">
+				is_comment = #{isComment},
+			</if>
+			<if test=" targetUsername != null">
+				target_username = #{targetUsername},
+			</if>
+			<if test="isViewed != null">
+				is_viewed = #{isViewed},
+			</if>
+			<if test=" updateUser != null">
+				update_user = #{updateUser},
+			</if>
+			<if test=" updateTime != null">
+				update_time = #{updateTime},
+			</if>
+			<if test=" del != null">
+				del = #{del}
+			</if>
+		</trim>
+		WHERE
+		id = #{id}
+	</update>
+	<select id="get"
+		parameterType="org.ifsim.vairline.core.article.domain.ArticleTendency"
+		resultType="org.ifsim.vairline.core.article.domain.ArticleTendency">
+		SELECT *
+		FROM t_article_tendency
+		<trim prefix="WHERE" prefixOverrides="AND">
+			del = 0
+			<if test=" username != null">
+				AND username = #{username}
+			</if>
+			<if test=" photo != null">
+				AND photo = #{photo}
+			</if>
+			<if test=" targetId != null">
+				AND target_id = #{targetId}
+			</if>
+			<if test=" type != null">
+				AND type = #{type}
+			</if>
+			<if test=" isComment != null">
+				AND is_comment = #{isComment}
+			</if>
+			<if test=" targetUsername != null">
+				AND target_username = #{targetUsername}
+			</if>
+			<if test="isViewed != null">
+				AND is_viewed = #{isViewed}
+			</if>
+		</trim>
+	</select>
+
+	<select id="getById"
+		parameterType="org.ifsim.vairline.core.article.domain.ArticleTendency"
+		resultType="org.ifsim.vairline.core.article.domain.ArticleTendency">
+		SELECT *
+		FROM t_article_tendency
+		WHERE id = #{id}
+	</select>
+
+	<select id="getCount"
+		parameterType="org.ifsim.vairline.core.article.domain.ArticleTendency"
+		resultType="Integer">
+		SELECT count(id)
+		FROM t_article_tendency
+		<trim prefix="WHERE" prefixOverrides="AND">
+			del = 0
+			<if test=" username != null">
+				AND username = #{username}
+			</if>
+			<if test=" photo != null">
+				AND photo = #{photo}
+			</if>
+			<if test=" targetId != null">
+				AND target_id = #{targetId}
+			</if>
+			<if test=" type != null">
+				AND type = #{type}
+			</if>
+			<if test=" isComment != null">
+				AND is_comment = #{isComment}
+			</if>
+			<if test=" targetUsername != null">
+				AND target_username = #{targetUsername}
+			</if>
+			<if test="isViewed != null">
+				AND is_viewed = #{isViewed}
+			</if>
+		</trim>
+	</select>
+
+	<update id="updateByIdRange">
+		UPDATE t_article_tendency
+		<trim prefix="SET" suffixOverrides=",">
+			<if test=" param1.username != null">
+				username = #{param1.username},
+			</if>
+			<if test=" param1.photo != null">
+				photo = #{param1.photo},
+			</if>
+			<if test=" param1.targetId != null">
+				target_id = #{param1.targetId},
+			</if>
+			<if test=" param1.type != null">
+				type = #{param1.type},
+			</if>
+			<if test=" param1.isComment != null">
+				is_comment = #{param1.isComment},
+			</if>
+			<if test=" param1.targetUsername != null">
+				target_username = #{param1.targetUsername},
+			</if>
+			<if test=" param1.isViewed != null">
+				is_viewed = #{param1.isViewed},
+			</if>
+			<if test=" param1.updateUser != null">
+				update_user = #{param1.updateUser},
+			</if>
+			<if test=" param1.updateTime != null">
+				update_time = #{param1.updateTime},
+			</if>
+			<if test=" param1.del != null">
+				del = #{param1.del}
+			</if>
+		</trim>
+		WHERE
+		id in
+		<foreach open="(" close=")" collection="param2" item="item" separator=",">#{item}</foreach>
+	</update>
+</mapper>

@@ -1,0 +1,84 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.ifsim.vairline.core.flight.dao.FlightPathDao">
+	<insert id="create" parameterType="org.ifsim.vairline.core.flight.domain.FlightPath">
+		INSERT INTO
+		t_flight_path
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="flightId != null">
+				flight_id,
+			</if>
+			<if test="lng != null">
+				lng,
+			</if>
+			<if test="lat != null">
+				lat,
+			</if>
+		</trim>
+		VALUES
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="flightId != null">
+				#{flightId},
+			</if>
+			<if test="lng != null">
+				#{lng},
+			</if>
+			<if test="lat != null">
+				#{lat},
+			</if>
+		</trim>
+	</insert>
+	<delete id="delete" parameterType="org.ifsim.vairline.core.flight.domain.FlightPath">
+		DELETE
+		FROM t_flight_path
+		WHERE
+		id = #{id}
+	</delete>
+	<update id="update" parameterType="org.ifsim.vairline.core.flight.domain.FlightPath">
+		UPDATE t_flight_path
+		<trim prefix="SET" suffixOverrides=",">
+			<if test=" flightId != null">
+				flight_id = #{flightId},
+			</if>
+			<if test=" lng != null">
+				lng = #{lng},
+			</if>
+			<if test=" lat != null">
+				lat = #{lat},
+			</if>
+		</trim>
+		WHERE
+		id = #{id}
+	</update>
+	<select id="get" parameterType="org.ifsim.vairline.core.flight.domain.FlightPath"
+		resultType="org.ifsim.vairline.core.flight.domain.FlightPath">
+		SELECT *
+		FROM t_flight_path
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test=" flightId != null">
+				AND flight_id = #{flightId}
+			</if>
+			<if test=" lng != null">
+				AND lng = #{lng}
+			</if>
+			<if test=" lat != null">
+				AND lat = #{lat}
+			</if>
+		</trim>
+		ORDER BY create_time
+	</select>
+	<select id="getById" parameterType="org.ifsim.vairline.core.flight.domain.FlightPath"
+		resultType="org.ifsim.vairline.core.flight.domain.FlightPath">
+		SELECT *
+		FROM t_flight_path
+		WHERE id = #{id}
+	</select>
+
+	<select id="getLastByFlightId" parameterType="Integer" resultType="org.ifsim.vairline.core.flight.domain.FlightPath">
+		SELECT *
+		FROM t_flight_path
+		WHERE create_time = (SELECT MAX(create_time) FROM t_flight_path WHERE flight_id =#{flightId})
+		AND flight_id = #{flightId}
+	</select>
+</mapper>

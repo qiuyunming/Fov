@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.ifsim.vairline.core.article.dao.ArticleCommentDao">
+
+	<resultMap
+		type="org.ifsim.vairline.core.article.domain.ArticleCommentGroupDto"
+		id="articleCommentGroupDtoResultMap">
+		<id column="p_id" />
+		<association property="parent" columnPrefix="p_"
+			autoMapping="true" javaType="org.ifsim.vairline.core.article.domain.ArticleComment">
+		</association>
+		<collection property="subList"
+			ofType="org.ifsim.vairline.core.article.domain.ArticleComment"
+			columnPrefix="s_" autoMapping="true">
+		</collection>
+	</resultMap>
+
+	<resultMap
+		type="org.ifsim.vairline.core.article.domain.ArticleAndTendencyDto"
+		id="articleAndTendencyDtoResultMap">
+		<id column="ate_id" />
+		<association property="articleTendency" autoMapping="true"
+			columnPrefix="ate_" javaType="org.ifsim.vairline.core.article.domain.ArticleTendency"></association>
+		<association property="articleComment" autoMapping="true"
+			columnPrefix="ac_" javaType="org.ifsim.vairline.core.article.domain.ArticleComment"></association>
+	</resultMap>
+	<insert id="insert"
+		parameterType="org.ifsim.vairline.core.article.domain.ArticleComment"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO t_article_comment
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test=" username != null">
+				username,
+			</if>
+			<if test=" targetUsername !=null ">
+				target_username,
+			</if>
+			<if test=" parentId !=null ">
+				parent_id,
+			</if>
+			<if test=" content !=null ">
+				content,
+			</if>
+			<if test=" photo !=null ">
+				photo,
+			</if>
+			<if test=" articleId !=null ">
+				article_id,
+			</if>
+			<if test=" isViewed !=null ">
+				is_viewed,
+			</if>
+			<if test=" countOfLiking != null">
+				count_of_liking,
+			</if>
+			<if test=" createUser != null">
+				create_user,
+			</if>
+			<if test=" updateUser != null">
+				update_user
+			</if>
+		</trim>
+		VALUES
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test=" username != null">
+				#{username},
+			</if>
+			<if test=" targetUsername !=null ">
+				#{targetUsername},
+			</if>
+			<if test=" parentId !=null ">
+				#{parentId},
+			</if>
+			<if test=" content !=null ">
+				#{content},
+			</if>
+			<if test=" photo !=null ">
+				#{photo},
+			</if>
+			<if test=" articleId !=null ">
+				#{articleId},
+			</if>
+			<if test=" isViewed !=null ">
+				#{isViewed},
+			</if>
+			<if test=" countOfLiking != null">
+				#{countOfLiking},
+			</if>
+			<if test=" createUser != null">
+				#{createUser},
+			</if>
+			<if test=" updateUser != null">
+				#{updateUser}
+			</if>
+		</trim>
+	</insert>
+
+	<delete id="delete"
+		parameterType="org.ifsim.vairline.core.article.domain.ArticleComment">
+		DELETE FROM t_article_comment
+		WHERE id = #{id}
+	</delete>
+
+	<update id="update"
+		parameterType="org.ifsim.vairline.core.article.domain.ArticleComment">
+		UPDATE t_article_comment
+		<trim prefix="SET" suffixOverrides=",">
+			<if test=" username != null">
+				username = #{username},
+			</if>
+			<if test=" targetUsername !=null ">
+				target_username = #{targetUsername},
+			</if>
+			<if test=" parentId !=null ">
+				parent_id = #{parentId},
+			</if>
+			<if test=" content !=null ">
+				content = #{content},
+			</if>
+			<if test=" photo !=null ">
+				photo = #{photo},
+			</if>
+			<if test=" articleId !=null ">
+				article_id = #{articleId},
+			</if>
+			<if test=" isViewed !=null ">
+				is_viewed = #{isViewed},
+			</if>
+			<if test=" countOfLiking != null">
+				count_of_liking = #{countOfLiking},
+			</if>
+			<if test=" updateUser != null">
+				update_user = #{updateUser},
+			</if>
+			<if test=" updateTime != null">
+				update_time = #{updateTime},
+			</if>
+			<if test=" del != null">
+				del = #{del}
+			</if>
+		</trim>
+		WHERE
+		id = #{id}
+	</update>
+	<select id="get"
+		parameterType="org.ifsim.vairline.core.article.domain.ArticleComment"
+		resultType="org.ifsim.vairline.core.article.domain.ArticleComment">
+		SELECT *
+		FROM t_article_comment
+		<trim prefix="WHERE" prefixOverrides="AND">
+			del = 0
+			<if test=" username != null">
+				AND username = #{username}
+			</if>
+			<if test=" targetUsername != null ">
+				AND target_username = #{targetUsername}
+			</if>
+			<if test=" parentId != null ">
+				AND parent_id = #{parentId}
+			</if>
+			<if test=" content != null ">
+				AND content = #{content}
+			</if>
+			<if test=" photo != null ">
+				AND photo = #{photo}
+			</if>
+			<if test=" articleId != null ">
+				AND article_id = #{articleId}
+			</if>
+			<if test=" isViewed != null ">
+				AND is_viewed = #{isViewed}
+			</if>
+			<if test=" countOfLiking != null">
+				AND count_of_liking = #{countOfLiking}
+			</if>
+		</trim>
+		ORDER BY create_time desc
+	</select>
+
+	<select id="getById"
+		parameterType="org.ifsim.vairline.core.article.domain.ArticleComment"
+		resultType="org.ifsim.vairline.core.article.domain.ArticleComment">
+		SELECT *
+		FROM t_article_comment
+		WHERE id = #{id}
+	</select>
+	<select id="getCommentGroup" resultMap="articleCommentGroupDtoResultMap"
+		parameterType="Integer">
+		SELECT
+		p.id p_id,p.username p_username,p.target_username
+		p_target_username,p.parent_id p_parent_id,p.content
+		p_content,p.photo
+		p_photo,p.article_id p_article_id,p.is_viewed
+		p_is_viewed,p.count_of_liking p_count_of_liking,p.create_time
+		p_create_time,p.create_user p_create_user,p.update_time
+		p_update_time,p.update_user p_update_user,p.del
+		p_del,p.count_of_tendency p_count_of_tendency,
+		s.id
+		s_id,s.username
+		s_username,s.target_username
+		s_target_username,s.parent_id
+		s_parent_id,s.content s_content,s.photo
+		s_photo,s.article_id
+		s_article_id,s.is_viewed
+		s_is_viewed,s.count_of_liking
+		s_count_of_liking,s.create_time
+		s_create_time,s.create_user
+		s_create_user,s.update_time
+		s_update_time,s.update_user
+		s_update_user,s.del s_del,s.count_of_tendency s_count_of_tendency
+		FROM
+		(SELECT ac.*,COUNT(target_id) count_of_tendency
+		FROM t_article_comment
+		ac
+		LEFT JOIN t_article_tendency ate
+		ON target_id = ac.id AND type=0 AND
+		is_comment = TRUE
+		GROUP BY target_id,ac.id
+		HAVING ac.article_id =
+		#{articleId}
+		AND ac.parent_id =0) p
+		LEFT JOIN
+		(SELECT
+		ac.*,COUNT(target_id) count_of_tendency
+		FROM t_article_comment ac
+		LEFT
+		JOIN t_article_tendency ate
+		ON target_id = ac.id AND type = 0 AND
+		is_comment = TRUE
+		WHERE parent_id in
+		(SELECT id
+		FROM
+		t_article_comment
+		WHERE article_id = #{articleId} AND parent_id =0)
+		GROUP BY
+		target_id,ac.id) s
+		ON s.parent_id = p.id
+		ORDER BY p.create_time
+		DESC,s.create_time DESC
+	</select>
+
+	<select id="getCommentGroupByCommentAndUser" resultMap="articleCommentGroupDtoResultMap">
+		SELECT
+		p.id p_id,p.username p_username,p.target_username
+		p_target_username,p.parent_id p_parent_id,p.content
+		p_content,p.photo
+		p_photo,p.article_id p_article_id,p.is_viewed
+		p_is_viewed,p.count_of_liking p_count_of_liking,p.create_time
+		p_create_time,p.create_user p_create_user,p.update_time
+		p_update_time,p.update_user p_update_user,p.del
+		p_del,p.count_of_tendency p_count_of_tendency,p.is_click p_is_click,
+		s.id
+		s_id,s.username s_username,s.target_username
+		s_target_username,s.parent_id s_parent_id,s.content s_content,s.photo
+		s_photo,s.article_id s_article_id,s.is_viewed
+		s_is_viewed,s.count_of_liking s_count_of_liking,s.create_time
+		s_create_time,s.create_user s_create_user,s.update_time
+		s_update_time,s.update_user s_update_user,s.del
+		s_del,s.count_of_tendency
+		s_count_of_tendency,s.is_click s_is_click
+		FROM
+		(SELECT a.*, is_click FROM
+		(SELECT ac.*,COUNT(target_id)
+		count_of_tendency
+		FROM t_article_comment ac
+		LEFT JOIN t_article_tendency
+		ate
+		ON target_id = ac.id AND type=0 AND is_comment = TRUE
+		GROUP BY
+		target_id,ac.id
+		HAVING ac.article_id = #{param1}
+		AND ac.parent_id =0) a
+		LEFT JOIN
+		(SELECT COUNT(ate.id) is_click,ate.*
+		FROM t_article_tendency
+		ate
+		WHERE ate.is_comment = TRUE
+		AND type = 0
+		GROUP BY ate.id
+		HAVING
+		username = #{param2}) b
+		ON a.id = b.target_id) p
+		LEFT JOIN
+		( SELECT
+		a.*,is_click FROM (SELECT ac.*,COUNT(target_id)
+		count_of_tendency
+		FROM
+		t_article_comment ac
+		LEFT JOIN t_article_tendency ate
+		ON target_id =
+		ac.id AND type = 0 AND is_comment = TRUE
+		WHERE parent_id in
+		(SELECT id
+		FROM
+		t_article_comment WHERE article_id = #{param1} AND parent_id =0)
+		GROUP BY target_id,ac.id) a
+		LEFT JOIN
+		(SELECT COUNT(ate.id)
+		is_click,ate.*
+		FROM t_article_tendency ate
+		WHERE ate.is_comment = TRUE
+		AND type = 0
+		GROUP BY ate.id
+		HAVING username = #{param2}) b
+		ON a.id =
+		b.target_id
+		) s
+		ON s.parent_id = p.id
+		ORDER BY p.create_time
+		DESC,s.create_time DESC
+	</select>
+
+	<select id="getCount"
+		parameterType="org.ifsim.vairline.core.article.domain.ArticleComment"
+		resultType="Integer">
+		SELECT count(id)
+		FROM t_article_comment
+		<trim prefix="WHERE" prefixOverrides="AND">
+			del = 0
+			<if test=" username != null">
+				AND username = #{username}
+			</if>
+			<if test=" targetUsername != null ">
+				AND target_username = #{targetUsername}
+			</if>
+			<if test=" parentId != null ">
+				AND parent_id = #{parentId}
+			</if>
+			<if test=" content != null ">
+				AND content = #{content}
+			</if>
+			<if test=" photo != null ">
+				AND photo = #{photo}
+			</if>
+			<if test=" articleId != null ">
+				AND article_id = #{articleId}
+			</if>
+			<if test=" isViewed != null ">
+				AND is_viewed = #{isViewed}
+			</if>
+			<if test=" countOfLiking != null">
+				AND count_of_liking = #{countOfLiking}
+			</if>
+		</trim>
+	</select>
+	<update id="updateByIdRange">
+		UPDATE t_article_comment
+		<trim prefix="SET" suffixOverrides=",">
+			<if test=" param1.username != null">
+				username = #{param1.username},
+			</if>
+			<if test=" param1.targetUsername !=null ">
+				target_username = #{param1.targetUsername},
+			</if>
+			<if test=" param1.parentId !=null ">
+				parent_id = #{param1.parentId},
+			</if>
+			<if test=" param1.content !=null ">
+				content = #{param1.content},
+			</if>
+			<if test=" param1.photo !=null ">
+				photo = #{param1.photo},
+			</if>
+			<if test=" param1.articleId !=null ">
+				article_id = #{param1.articleId},
+			</if>
+			<if test=" param1.isViewed !=null ">
+				is_viewed = #{param1.isViewed},
+			</if>
+			<if test=" param1.countOfLiking != null">
+				count_of_liking = #{param1.countOfLiking},
+			</if>
+			<if test=" param1.updateUser != null">
+				update_user = #{param1.updateUser},
+			</if>
+			<if test=" param1.updateTime != null">
+				update_time = #{param1.updateTime},
+			</if>
+			<if test=" param1.del != null">
+				del = #{param1.del}
+			</if>
+		</trim>
+		WHERE
+		id in 
+		<foreach open="(" close=")" collection="param2" item="item" separator=",">#{item}
+		</foreach>
+		
+	</update>
+
+	<select id="getByTendency"
+		parameterType="org.ifsim.vairline.core.article.domain.ArticleTendency"
+		resultMap="articleAndTendencyDtoResultMap">
+		SELECT
+		ac.id ac_id,ac.username ac_username,ac.target_username
+		ac_target_username,ac.parent_id ac_parent_id,ac.content
+		ac_content,ac.photo ac_photo,ac.article_id
+		ac_article_id,ac.is_viewed
+		ac_is_viewed,ac.count_of_liking ac_count_of_liking,ac.create_time
+		ac_create_time,ac.create_user ac_create_user,ac.update_time
+		ac_update_time,ac.update_user ac_update_user,ac.del ac_del,
+		ate.id
+		ate_id,ate.username ate_username,ate.photo ate_photo,ate.target_id ate_target_id,ate.type
+		ate_type,ate.is_comment ate_is_comment,ate.target_username
+		ate_target_username,ate.is_viewed ate_is_viewed,ate.create_time
+		ate_create_time,ate.create_user ate_create_user,ate.update_time
+		ate_update_time,ate.update_user ate_update_user,ate.del ate_del
+		FROM
+		t_article_comment ac,t_article_tendency ate
+		<trim prefix="WHERE">
+			ac.del = 0
+			AND ate.target_id = ac.id
+			AND ate.is_comment = 1
+			<if test=" username != null">
+				AND ate.username = #{username}
+			</if>
+			<if test=" type != null">
+				AND ate.type = #{type}
+			</if>
+			<if test=" targetUsername != null">
+				AND ate.target_username = #{targetUsername}
+			</if>
+			<if test="isViewed != null">
+				ADN ate.is_viewed = #{isViewed}
+			</if>
+		</trim>
+		ORDER BY ate.create_time DESC
+	</select>
+</mapper>

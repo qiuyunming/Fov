@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.ifsim.vairline.core.user.dao.UserDao">
+	<insert id="createUser" parameterType="org.ifsim.vairline.core.user.domain.User"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO t_user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test=" username !=null ">
+				username,
+			</if>
+			<if test=" realName !=null ">
+				real_name,
+			</if>
+			<if test=" password !=null ">
+				password,
+			</if>
+			<if test=" photo !=null ">
+				photo,
+			</if>
+			<if test=" mail !=null ">
+				mail,
+			</if>
+			<if test=" phoneNumber !=null ">
+				phone_number,
+			</if>
+			<if test=" gender !=null ">
+				gender,
+			</if>
+			<if test=" birthday !=null ">
+				birthday,
+			</if>
+			<if test=" colleage !=null ">
+				colleage,
+			</if>
+			<if test=" city !=null ">
+				city,
+			</if>
+			<if test=" ip !=null ">
+				ip,
+			</if>
+			<if test=" qq !=null ">
+				qq,
+			</if>
+			<if test=" wechat !=null ">
+				wechat,
+			</if>
+			<if test=" address !=null ">
+				address,
+			</if>
+			<if test=" work !=null ">
+				work,
+			</if>
+			<if test=" reputation !=null ">
+				reputation,
+			</if>
+			<if test=" point !=null ">
+				point,
+			</if>
+			<if test=" websiteLoginTime !=null ">
+				website_login_time,
+			</if>
+			<if test=" pilotLoginTime !=null ">
+				pilot_login_time,
+			</if>
+			<if test=" atcLoginTime !=null ">
+				atc_login_time,
+			</if>
+			<if test=" pilotState !=null ">
+				pilot_state,
+			</if>
+			<if test=" atcState !=null ">
+				atc_state,
+			</if>
+			<if test=" accountState !=null ">
+				account_state,
+			</if>
+			<if test="updateUser !=null">
+				update_user,
+			</if>
+			<if test="del !=null">
+				del,
+			</if>
+		</trim>
+		VALUES
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test=" username !=null ">
+				#{username},
+			</if>
+			<if test=" realName !=null ">
+				#{realName},
+			</if>
+			<if test=" password !=null ">
+				#{password},
+			</if>
+			<if test=" photo !=null ">
+				#{photo},
+			</if>
+			<if test=" mail !=null ">
+				#{mail},
+			</if>
+			<if test=" phoneNumber !=null ">
+				#{phoneNumber},
+			</if>
+			<if test=" gender !=null ">
+				#{gender},
+			</if>
+			<if test=" birthday !=null ">
+				#{birthday},
+			</if>
+			<if test=" colleage !=null ">
+				#{colleage},
+			</if>
+			<if test=" city !=null ">
+				#{city},
+			</if>
+			<if test=" ip !=null ">
+				#{ip},
+			</if>
+			<if test=" qq !=null ">
+				#{qq},
+			</if>
+			<if test=" wechat !=null ">
+				#{wechat},
+			</if>
+			<if test=" address !=null ">
+				#{address},
+			</if>
+			<if test=" work !=null ">
+				#{work},
+			</if>
+			<if test=" reputation !=null ">
+				#{reputation},
+			</if>
+			<if test=" point !=null ">
+				#{point},
+			</if>
+			<if test=" websiteLoginTime !=null ">
+				#{websiteLoginTime},
+			</if>
+			<if test=" pilotLoginTime !=null ">
+				#{pilotLoginTime},
+			</if>
+			<if test=" atcLoginTime !=null ">
+				#{atcLoginTime},
+			</if>
+			<if test=" pilotState !=null ">
+				#{pilotState},
+			</if>
+			<if test=" atcState !=null ">
+				#{atcState},
+			</if>
+			<if test=" accountState !=null ">
+				#{accountState},
+			</if>
+			<if test="updateUser !=null">
+				#{updateUser},
+			</if>
+			<if test="del !=null">
+				#{del},
+			</if>
+		</trim>
+	</insert>
+
+	<delete id="deleteUser" parameterType="org.ifsim.vairline.core.user.domain.User">
+		DELETE FROM t_user
+		WHERE id
+		= #{id}
+	</delete>
+
+	<update id="updateUser" parameterType="org.ifsim.vairline.core.user.domain.User">
+		UPDATE t_user
+		<trim prefix="SET" suffixOverrides=",">
+			<if test=" username !=null ">
+				username = #{username} ,
+			</if>
+			<if test=" realName !=null ">
+				real_name = #{realName} ,
+			</if>
+			<if test=" password !=null ">
+				password = #{password} ,
+			</if>
+			<if test=" photo !=null ">
+				photo = #{photo} ,
+			</if>
+			<if test=" mail !=null ">
+				mail = #{mail} ,
+			</if>
+			<if test=" phoneNumber !=null ">
+				phone_number = #{phoneNumber} ,
+			</if>
+			<if test=" gender !=null ">
+				gender = #{gender} ,
+			</if>
+			<if test=" birthday !=null ">
+				birthday = #{birthday} ,
+			</if>
+			<if test=" colleage !=null ">
+				colleage = #{colleage} ,
+			</if>
+			<if test=" city !=null ">
+				city = #{city} ,
+			</if>
+			<if test=" ip !=null ">
+				ip = #{ip} ,
+			</if>
+			<if test=" qq !=null ">
+				qq = #{qq} ,
+			</if>
+			<if test=" wechat !=null ">
+				wechat = #{wechat} ,
+			</if>
+			<if test=" address !=null ">
+				address = #{address} ,
+			</if>
+			<if test=" work !=null ">
+				work = #{work} ,
+			</if>
+			<if test=" reputation !=null ">
+				reputation = #{reputation} ,
+			</if>
+			<if test=" point !=null ">
+				point = #{point} ,
+			</if>
+			<if test=" websiteLoginTime !=null ">
+				website_login_time = #{websiteLoginTime} ,
+			</if>
+			<if test=" pilotLoginTime !=null ">
+				pilot_login_time = #{pilotLoginTime} ,
+			</if>
+			<if test=" atcLoginTime !=null ">
+				atc_login_time = #{atcLoginTime} ,
+			</if>
+			<if test=" pilotState !=null ">
+				pilot_state = #{pilotState} ,
+			</if>
+			<if test=" atcState !=null ">
+				atc_state = #{atcState} ,
+			</if>
+			<if test=" accountState !=null ">
+				account_state = #{accountState} ,
+			</if>
+			<if test="updateUser !=null">
+				update_user = #{updateUser} ,
+			</if>
+			<if test="del !=null">
+				del = #{del} ,
+			</if>
+		</trim>
+		WHERE id = #{id}
+	</update>
+
+	<select id="getUser" resultType="org.ifsim.vairline.core.user.domain.User"
+		parameterType="org.ifsim.vairline.core.user.domain.User">
+		SELECT *
+		FROM t_user
+		<trim prefix="WHERE" prefixOverrides="AND">
+			AND del = 0
+			<if test=" username !=null ">
+				AND username = #{username}
+			</if>
+			<if test=" realName !=null ">
+				AND real_name = #{realName}
+			</if>
+			<if test=" password !=null ">
+				AND password = #{password}
+			</if>
+			<if test=" photo !=null ">
+				AND photo = #{photo}
+			</if>
+			<if test=" mail !=null ">
+				AND mail = #{mail}
+			</if>
+			<if test=" phoneNumber !=null ">
+				AND phone_number = #{phoneNumber}
+			</if>
+			<if test=" gender !=null ">
+				AND gender = #{gender}
+			</if>
+			<if test=" birthday !=null ">
+				AND birthday = #{birthday}
+			</if>
+			<if test=" colleage !=null ">
+				AND colleage = #{colleage}
+			</if>
+			<if test=" city !=null ">
+				AND city = #{city}
+			</if>
+			<if test=" ip !=null ">
+				AND ip = #{ip}
+			</if>
+			<if test=" qq !=null ">
+				AND qq = #{qq}
+			</if>
+			<if test=" wechat !=null ">
+				AND wechat = #{wechat}
+			</if>
+			<if test=" address !=null ">
+				AND address = #{address}
+			</if>
+			<if test=" work !=null ">
+				AND work = #{work}
+			</if>
+			<if test=" reputation !=null ">
+				AND reputation = #{reputation}
+			</if>
+			<if test=" point !=null ">
+				AND point = #{point}
+			</if>
+			<if test=" websiteLoginTime !=null ">
+				AND website_login_time = #{websiteLoginTime}
+			</if>
+			<if test=" pilotLoginTime !=null ">
+				AND pilot_login_time = #{pilotLoginTime}
+			</if>
+			<if test=" atcLoginTime !=null ">
+				AND atc_login_time = #{atcLoginTime}
+			</if>
+			<if test=" pilotState !=null ">
+				AND pilot_state = #{pilotState}
+			</if>
+			<if test=" atcState !=null ">
+				AND atc_state = #{atcState}
+			</if>
+			<if test=" accountState !=null ">
+				AND account_state = #{accountState}
+			</if>
+		</trim>
+	</select>
+
+	<select id="getUserById" resultType="org.ifsim.vairline.core.user.domain.User"
+		parameterType="org.ifsim.vairline.core.user.domain.User">
+		SELECT *
+		FROM t_user
+		WHERE id = #{id}
+	</select>
+
+	<select id="getByUsername" parameterType="org.ifsim.vairline.core.user.domain.User"
+		resultType="org.ifsim.vairline.core.user.domain.User">
+		SELECT *
+		FROM t_user
+		WHERE
+		username = #{username}
+	</select>
+
+</mapper>

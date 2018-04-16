@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.ifsim.vairline.core.company.dao.CompanyStaffDao">
+	<insert id="createCompanyStaff" parameterType="org.ifsim.vairline.core.company.domain.CompanyStaff"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO t_company_staff
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test=" companyIcao !=null">
+				company_icao,
+			</if>
+			<if test=" username !=null">
+				username,
+			</if>
+			<if test=" state != null">
+				state,
+			</if>
+			<if test=" isInvited != null">
+				is_invited,
+			</if>
+			<if test=" createUser !=null">
+				create_user,
+			</if>
+			<if test=" updateUser !=null">
+				update_user,
+			</if>
+			<if test=" del !=null">
+				del
+			</if>
+		</trim>
+		VALUES
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test=" companyIcao !=null">
+				#{companyIcao},
+			</if>
+			<if test=" username !=null">
+				#{username},
+			</if>
+			<if test="state != null">
+				#{state},
+			</if>
+			<if test=" isInvited != null">
+				#{isInvited},
+			</if>
+			<if test=" createUser !=null">
+				#{createUser},
+			</if>
+			<if test=" updateUser !=null">
+				#{updateUser},
+			</if>
+			<if test=" del !=null">
+				#{del},
+			</if>
+		</trim>
+	</insert>
+
+	<delete id="deleteCompanyStaff" parameterType="org.ifsim.vairline.core.company.domain.CompanyStaff">
+		DELETE
+		FROM
+		t_company_staff
+		WHERE id=#{id}
+	</delete>
+
+	<update id="updateCompanyStaff" parameterType="org.ifsim.vairline.core.company.domain.CompanyStaff">
+		UPDATE t_company_staff
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="companyIcao != null">
+				company_icao = #{companyIcao},
+			</if>
+			<if test="username != null">
+				username = #{username},
+			</if>
+			<if test="state != null">
+				state = #{state},
+			</if>
+			<if test=" isInvited != null">
+				is_invited = #{isInvited},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime},
+			</if>
+			<if test="updateUser != null">
+				update_user = #{updateUser},
+			</if>
+			<if test="del != null">
+				del = #{del}
+			</if>
+		</trim>
+		WHERE id = #{id}
+	</update>
+
+	<select id="getCompanyStaff" parameterType="org.ifsim.vairline.core.company.domain.CompanyStaff"
+		resultType="org.ifsim.vairline.core.company.domain.CompanyStaff">
+		SELECT *
+		FROM t_company_staff
+		<trim prefix="WHERE" prefixOverrides="AND">
+			AND del =0
+			<if test=" companyIcao !=null ">
+				AND company_icao = #{companyIcao}
+			</if>
+			<if test=" username !=null ">
+				AND username = #{username}
+			</if>
+			<if test=" state != null ">
+				AND state = #{state}
+			</if>
+			<if test=" isInvited != null ">
+				AND is_invited = #{isInvited}
+			</if>
+		</trim>
+	</select>
+	<select id="getCompanyStaffById" parameterType="org.ifsim.vairline.core.company.domain.CompanyStaff"
+		resultType="org.ifsim.vairline.core.company.domain.CompanyStaff">
+		SELECT *
+		FROM t_company_staff
+		WHERE id = #{id} AND del = 0
+	</select>
+</mapper>

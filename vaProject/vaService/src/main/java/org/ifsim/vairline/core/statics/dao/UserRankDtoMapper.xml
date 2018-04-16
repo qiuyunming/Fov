@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.ifsim.vairline.core.statics.dao.UserRankDtoDao">
+
+	<select id="get" resultType="org.ifsim.vairline.core.statics.domain.UserRankDto">
+		SELECT username,photo,sum_time
+		FROM (
+		SELECT pilot_username,SUM(actual_time) sum_time
+		FROM t_flight f
+		GROUP BY
+		pilot_username
+		) a,t_user
+		WHERE a.pilot_username = t_user.username
+		ORDER
+		BY sum_time DESC
+		LIMIT #{param1},#{param2}
+	</select>
+
+</mapper>

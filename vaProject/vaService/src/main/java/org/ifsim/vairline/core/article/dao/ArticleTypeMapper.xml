@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.ifsim.vairline.core.article.dao.ArticleTypeDao">
+	<insert id="insert" parameterType="org.ifsim.vairline.core.article.domain.ArticleType"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO t_aricle_type
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test=" title != null">
+				title,
+			</if>
+			<if test="photo != null">
+				photo,
+			</if>
+			<if test=" describe != null">
+				`describe`,
+			</if>
+			<if test=" notice != null">
+				notice,
+			</if>
+			<if test=" createUser != null">
+				create_user,
+			</if>
+			<if test=" updateUser != null">
+				update_user
+			</if>
+		</trim>
+		VALUES
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test=" title != null">
+				#{title},
+			</if>
+			<if test="photo != null">
+				#{photo},
+			</if>
+			<if test=" describe != null">
+				#{describe},
+			</if>
+			<if test=" notice != null">
+				#{notice},
+			</if>
+			<if test=" createUser != null">
+				#{createUser},
+			</if>
+			<if test=" updateUser != null">
+				#{updateUser}
+			</if>
+		</trim>
+	</insert>
+
+	<delete id="delete" parameterType="org.ifsim.vairline.core.article.domain.ArticleType">
+		DELETE
+		FROM t_aricle_type
+		WHERE
+		id = #{id}
+	</delete>
+
+	<update id="update" parameterType="org.ifsim.vairline.core.article.domain.ArticleType">
+		UPDATE t_aricle_type
+		<trim prefix="SET" suffixOverrides=",">
+			<if test=" title != null">
+				title = #{title},
+			</if>
+			<if test="photo != null">
+				photo = #{photo},
+			</if>
+			<if test=" describe != null">
+				`describe` = #{describe},
+			</if>
+			<if test=" notice != null">
+				notice = #{notice},
+			</if>
+			<if test=" updateUser != null">
+				update_user = #{updateUser},
+			</if>
+			<if test=" updateTime != null">
+				update_time = #{updateTime},
+			</if>
+			<if test=" del != null">
+				del = #{del}
+			</if>
+		</trim>
+		WHERE
+		id = #{id}
+	</update>
+	<select id="get" parameterType="org.ifsim.vairline.core.article.domain.ArticleType"
+		resultType="org.ifsim.vairline.core.article.domain.ArticleType">
+		SELECT *
+		FROM t_aricle_type
+		<trim prefix="WHERE" prefixOverrides="AND">
+			del = 0
+			<if test=" title != null">
+				AND title = #{title}
+			</if>
+			<if test="photo != null">
+				AND photo = #{photo}
+			</if>
+			<if test=" describe != null">
+				AND `describe` = #{describe}
+			</if>
+			<if test=" notice != null">
+				AND notice = #{notice}
+			</if>
+		</trim>
+	</select>
+
+	<select id="getById" parameterType="org.ifsim.vairline.core.article.domain.ArticleType"
+		resultType="org.ifsim.vairline.core.article.domain.ArticleType">
+		SELECT *
+		FROM t_aricle_type
+		WHERE id = #{id}
+	</select>
+</mapper>

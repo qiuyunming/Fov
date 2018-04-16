@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.ifsim.vairline.core.company.dao.CompanyAircraftDao">
+	<insert id="createCompanyAircraft"
+		parameterType="org.ifsim.vairline.core.company.domain.CompanyAircraft"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO t_company_aircraft
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="aircraftId!=null">
+				aircraft_id,
+			</if>
+			<if test="aircraftName!=null">
+				aircraft_name,
+			</if>
+			<if test="companyIcao!=null">
+				company_icao,
+			</if>
+			<if test="address!=null">
+				address,
+			</if>
+			<if test="usedLife!=null">
+				used_life,
+			</if>
+			<if test="brokenLevel!=null">
+				broken_level,
+			</if>
+			<if test="patterns!=null">
+				patterns,
+			</if>
+			<if test="isSale!=null">
+				is_sale,
+			</if>
+			<if test="isFlying != null">
+				is_flying,
+			</if>
+			<if test="price != null ">
+				price,
+			</if>
+			<if test="createUser!=null">
+				create_user,
+			</if>
+			<if test="updateUser!=null">
+				update_user,
+			</if>
+			<if test="del!=null">
+				del,
+			</if>
+		</trim>
+		VALUES
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="aircraftId!=null">
+				#{aircraftId},
+			</if>
+			<if test="aircraftName!=null">
+				#{aircraftName},
+			</if>
+			<if test="companyIcao!=null">
+				#{companyIcao},
+			</if>
+			<if test="address!=null">
+				#{address},
+			</if>
+			<if test="usedLife!=null">
+				#{usedLife},
+			</if>
+			<if test="brokenLevel!=null">
+				#{brokenLevel},
+			</if>
+			<if test="patterns!=null">
+				#{patterns},
+			</if>
+			<if test="isSale!=null">
+				#{isSale},
+			</if>
+			<if test="isFlying != null">
+				#{isFlying},
+			</if>
+			<if test="price != null ">
+				#{price},
+			</if>
+			<if test="createUser!=null">
+				#{createUser},
+			</if>
+			<if test="updateUser!=null">
+				#{updateUser},
+			</if>
+			<if test="del!=null">
+				#{del},
+			</if>
+		</trim>
+	</insert>
+
+	<delete id="deleteCompanyAircraft"
+		parameterType="org.ifsim.vairline.core.company.domain.CompanyAircraft">
+		DELETE
+		FROM t_company_aircraft
+		WHERE id = #{id}
+	</delete>
+
+	<update id="updateCompanyAircraft"
+		parameterType="org.ifsim.vairline.core.company.domain.CompanyAircraft">
+		UPDATE t_company_aircraft
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="aircraftId!=null">
+				aircraft_id = #{aircraftId},
+			</if>
+			<if test="aircraftName!=null">
+				aircraft_name = #{aircraftName},
+			</if>
+			<if test="companyIcao!=null">
+				company_icao = #{companyIcao},
+			</if>
+			<if test="address!=null">
+				address = #{address},
+			</if>
+			<if test="usedLife!=null">
+				used_life = #{usedLife},
+			</if>
+			<if test="brokenLevel!=null">
+				broken_level = #{brokenLevel},
+			</if>
+			<if test="patterns!=null">
+				patterns = #{patterns},
+			</if>
+			<if test="isSale!=null">
+				is_sale = #{isSale},
+			</if>
+			<if test="isFlying != null">
+				is_flying = #{isFlying},
+			</if>
+			<if test="price != null ">
+				price = #{price},
+			</if>
+			<if test="updateUser!=null">
+				update_user = #{updateUser},
+			</if>
+			<if test="updateTime!=null">
+				update_time = #{updateTime},
+			</if>
+			<if test="del!=null">
+				del = #{del},
+			</if>
+		</trim>
+		WHERE id = #{id}
+	</update>
+
+	<select id="getCompanyAircraft"
+		parameterType="org.ifsim.vairline.core.company.domain.CompanyAircraft"
+		resultType="org.ifsim.vairline.core.company.domain.CompanyAircraft">
+		SELECT *
+		FROM t_company_aircraft
+		<trim prefix="WHERE" prefixOverrides="AND">
+			AND del = 0
+			<if test="aircraftId!=null">
+				AND aircraft_id = #{aircraftId}
+			</if>
+			<if test="aircraftName!=null">
+				AND aircraft_name = #{aircraftName}
+			</if>
+			<if test="companyIcao!=null">
+				AND company_icao = #{companyIcao}
+			</if>
+			<if test="address!=null">
+				AND address = #{address}
+			</if>
+			<if test="usedLife!=null">
+				AND used_life = #{usedLife}
+			</if>
+			<if test="brokenLevel!=null">
+				AND broken_level = #{brokenLevel}
+			</if>
+			<if test="patterns!=null">
+				AND patterns = #{patterns}
+			</if>
+			<if test="isSale!=null">
+				AND is_sale = #{isSale}
+			</if>
+			<if test="isFlying != null">
+				AND is_flying = #{isFlying}
+			</if>
+			<if test="price != null ">
+				AND price = #{price}
+			</if>
+		</trim>
+	</select>
+
+	<select id="getCompanyAircraftById"
+		parameterType="org.ifsim.vairline.core.company.domain.CompanyAircraft"
+		resultType="org.ifsim.vairline.core.company.domain.CompanyAircraft">
+		SELECT *
+		FROM t_company_aircraft
+		WHERE id = #{id}
+	</select>
+	
+	<select id="getByCompanyAircraftAndAircraft"
+		resultType="org.ifsim.vairline.core.company.domain.CompanyAircraft">
+		SELECT ca.*
+		FROM t_company_aircraft ca,t_aircraft a
+		<trim prefix="WHERE" prefixOverrides="AND">
+			AND ca.aircraft_id = a.id
+			AND ca.del = 0
+			AND a.del = 0
+			<if test="param1.aircraftName!=null">
+				AND ca.aircraft_name = #{param1.aircraftName}
+			</if>
+			<if test="param1.companyIcao!=null">
+				AND ca.company_icao = #{param1.companyIcao}
+			</if>
+			<if test="param1.address!=null">
+				AND ca.address = #{param1.address}
+			</if>
+			<if test="param1.usedLife!=null">
+				AND ca.used_life = #{param1.usedLife}
+			</if>
+			<if test="param1.brokenLevel!=null">
+				AND ca.broken_level = #{param1.brokenLevel}
+			</if>
+			<if test="param1.patterns!=null">
+				AND ca.patterns = #{param1.patterns}
+			</if>
+			<if test="param1.isSale!=null">
+				AND ca.is_sale = #{param1.isSale}
+			</if>
+			<if test="param1.isFlying != null">
+				AND ca.is_flying = #{param1.isFlying}
+			</if>
+			<if test="param1.price != null ">
+				AND ca.price = #{param1.price}
+			</if>
+			
+			<if test="param2.model!=null">
+				AND a.model = #{param2.model}
+			</if>
+			<if test="param2.logo!=null">
+				AND a.logo = #{param2.logo}
+			</if>
+			<if test="param2.photo!=null">
+				AND a.photo = #{param2.photo}
+			</if>
+			<if test="param2.totalLife!=null">
+				AND a.total_life = #{param2.totalLife}
+			</if>
+			<if test="param2.requiredLicenseLevel!=null">
+				AND a.required_license_level = #{param2.requiredLicenseLevel}
+			</if>
+			<if test="param2.maxPassenger!=null">
+				AND a.max_passenger = #{param2.maxPassenger}
+			</if>
+			<if test="param2.maxCargo!=null">
+				AND a.max_cargo = #{param2.maxCargo}
+			</if>
+			<if test="param2.price!=null">
+				AND a.price = #{param2.price}
+			</if>
+		</trim>
+	</select>
+
+</mapper>

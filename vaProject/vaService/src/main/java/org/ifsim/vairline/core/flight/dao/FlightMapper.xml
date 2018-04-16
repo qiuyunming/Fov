@@ -1,0 +1,579 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.ifsim.vairline.core.flight.dao.FlightDao">
+
+	<resultMap type="org.ifsim.vairline.core.flight.domain.FlightPlanDto"
+		id="FlightPlanDtoResultMap">
+		<id column="f_id" />
+		<association property="flight" autoMapping="true"
+			columnPrefix="f_" javaType="org.ifsim.vairline.core.flight.domain.Flight"></association>
+		<association property="plan" autoMapping="true"
+			columnPrefix="p_" javaType="org.ifsim.vairline.core.plan.domain.Plan"></association>
+		<association property="companyAircraft" autoMapping="true"
+			columnPrefix="ca_" javaType="org.ifsim.vairline.core.company.domain.CompanyAircraft"></association>
+	</resultMap>
+
+	<insert id="createFlight" parameterType="org.ifsim.vairline.core.flight.domain.Flight"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO t_flight
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="pilotUsername != null">
+				pilot_username,
+			</if>
+			<if test="planId != null">
+				plan_id,
+			</if>
+			<if test="model != null">
+				model,
+			</if>
+			<if test="flightState != null">
+				flight_state,
+			</if>
+			<if test="companyAircraftId != null">
+				company_aircraft_id,
+			</if>
+			<if test="passengerCount != null">
+				passenger_count,
+			</if>
+			<if test="actualDistance != null">
+				actual_distance,
+			</if>
+			<if test="actualTime != null">
+				actual_time,
+			</if>
+			<if test="actualFuel != null">
+				actual_fuel,
+			</if>
+			<if test="score != null">
+				score,
+			</if>
+			<if test="point != null">
+				point,
+			</if>
+			<if test="reputation != null">
+				reputation,
+			</if>
+			<if test="startTime != null">
+				start_time,
+			</if>
+			<if test="endTime != null">
+				end_time,
+			</if>
+			<if test="createUser != null ">
+				create_user,
+			</if>
+			<if test="updateUser != null ">
+				update_user,
+			</if>
+			<if test="del != null ">
+				del,
+			</if>
+		</trim>
+		VALUES
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="pilotUsername != null">
+				#{pilotUsername},
+			</if>
+			<if test="planId != null">
+				#{planId},
+			</if>
+			<if test="model != null">
+				#{model},
+			</if>
+			<if test="flightState != null">
+				#{flightState},
+			</if>
+			<if test="companyAircraftId != null">
+				#{companyAircraftId},
+			</if>
+			<if test="passengerCount != null">
+				#{passengerCount},
+			</if>
+			<if test="actualDistance != null">
+				#{actualDistance},
+			</if>
+			<if test="actualTime != null">
+				#{actualTime},
+			</if>
+			<if test="actualFuel != null">
+				#{actualFuel},
+			</if>
+			<if test="score != null">
+				#{score},
+			</if>
+			<if test="point != null">
+				#{point},
+			</if>
+			<if test="reputation != null">
+				#{reputation},
+			</if>
+			<if test="startTime != null">
+				#{startTime},
+			</if>
+			<if test="endTime != null">
+				#{endTime},
+			</if>
+			<if test="createUser != null ">
+				#{createUser},
+			</if>
+			<if test="updateUser != null ">
+				#{updateUser},
+			</if>
+			<if test="del != null ">
+				#{del},
+			</if>
+		</trim>
+	</insert>
+
+	<delete id="deleteFlight" parameterType="org.ifsim.vairline.core.flight.domain.Flight">
+		DELETE FROM t_flight
+		WHERE id = #{id}
+	</delete>
+
+	<update id="updateFlight" parameterType="org.ifsim.vairline.core.flight.domain.Flight">
+		UPDATE t_flight
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="pilotUsername != null">
+				pilot_username = #{pilotUsername},
+			</if>
+			<if test="planId != null">
+				plan_id = #{planId},
+			</if>
+			<if test="model != null">
+				model = #{model},
+			</if>
+			<if test="flightState != null">
+				flight_state = #{flightState},
+			</if>
+			<if test="companyAircraftId != null">
+				company_aircraft_id = #{companyAircraftId},
+			</if>
+			<if test="passengerCount != null">
+				passenger_count = #{passengerCount},
+			</if>
+			<if test="actualDistance != null">
+				actual_distance = #{actualDistance},
+			</if>
+			<if test="actualTime != null">
+				actual_time = #{actualTime},
+			</if>
+			<if test="actualFuel != null">
+				actual_fuel = #{actualFuel},
+			</if>
+			<if test="score != null">
+				score = #{score},
+			</if>
+			<if test="point != null">
+				point = #{point},
+			</if>
+			<if test="reputation != null">
+				reputation = #{reputation},
+			</if>
+			<if test="startTime != null">
+				start_time = #{startTime},
+			</if>
+			<if test="endTime != null">
+				end_time = #{endTime},
+			</if>
+			<if test="updateTime != null ">
+				update_time = #{updateTime},
+			</if>
+			<if test="updateUser != null ">
+				update_user = #{updateUser},
+			</if>
+			<if test="del != null ">
+				del = #{del},
+			</if>
+		</trim>
+		WHERE id = #{id}
+	</update>
+
+	<select id="getFlight" resultType="org.ifsim.vairline.core.flight.domain.Flight"
+		parameterType="org.ifsim.vairline.core.flight.domain.Flight">
+		SELECT *
+		FROM t_flight
+		<trim prefix="WHERE" prefixOverrides="AND">
+			AND del = 0
+			<if test="pilotUsername != null">
+				AND pilot_username = #{pilotUsername}
+			</if>
+			<if test="planId != null">
+				AND plan_id = #{planId}
+			</if>
+			<if test="model != null">
+				AND model = #{model}
+			</if>
+			<if test="flightState != null">
+				AND flight_state = #{flightState}
+			</if>
+			<if test="companyAircraftId != null">
+				AND company_aircraft_id = #{companyAircraftId}
+			</if>
+			<if test="passengerCount != null">
+				AND passenger_count = #{passengerCount}
+			</if>
+			<if test="actualDistance != null">
+				AND actual_distance = #{actualDistance}
+			</if>
+			<if test="actualTime != null">
+				AND actual_time = #{actualTime}
+			</if>
+			<if test="actualFuel != null">
+				AND actual_fuel = #{actualFuel}
+			</if>
+			<if test="score != null">
+				AND score = #{score}
+			</if>
+			<if test="point != null">
+				AND point = #{point}
+			</if>
+			<if test="reputation != null">
+				AND reputation = #{reputation}
+			</if>
+			<if test="startTime != null">
+				AND start_time = #{startTime}
+			</if>
+			<if test="endTime != null">
+				AND end_time = #{endTime}
+			</if>
+		</trim>
+		ORDER BY create_time DESC
+	</select>
+
+	<select id="getFlightById" resultType="org.ifsim.vairline.core.flight.domain.Flight"
+		parameterType="org.ifsim.vairline.core.flight.domain.Flight">
+		SELECT *
+		FROM t_flight
+		WHERE id = #{id}
+	</select>
+
+	<select id="getFlyingFlight" resultType="org.ifsim.vairline.core.flight.domain.Flight"
+		parameterType="org.ifsim.vairline.core.flight.domain.Flight">
+		SELECT *
+		FROM t_flight
+		WHERE flight_state in (0,1,2,3,4,5,6,7,8,9,10,11)
+		<trim>
+			AND del = 0
+			<if test="pilotUsername != null">
+				AND pilot_username = #{pilotUsername}
+			</if>
+			<if test="planId != null">
+				AND plan_id = #{planId}
+			</if>
+			<if test="model != null">
+				AND model = #{model}
+			</if>
+			<if test="companyAircraftId != null">
+				AND company_aircraft_id = #{companyAircraftId}
+			</if>
+			<if test="passengerCount != null">
+				AND passenger_count = #{passengerCount}
+			</if>
+			<if test="actualDistance != null">
+				AND actual_distance = #{actualDistance}
+			</if>
+			<if test="actualTime != null">
+				AND actual_time = #{actualTime}
+			</if>
+			<if test="actualFuel != null">
+				AND actual_fuel = #{actualFuel}
+			</if>
+			<if test="score != null">
+				AND score = #{score}
+			</if>
+			<if test="point != null">
+				AND point = #{point}
+			</if>
+			<if test="reputation != null">
+				AND reputation = #{reputation}
+			</if>
+			<if test="startTime != null">
+				AND start_time = #{startTime}
+			</if>
+			<if test="endTime != null">
+				AND end_time = #{endTime}
+			</if>
+		</trim>
+	</select>
+
+	<select id="getFlightByPltKey" parameterType="Integer"
+		resultType="org.ifsim.vairline.core.flight.domain.Flight">
+		SELECT f.*
+		FROM t_flight f,t_flight_flyingstate ff
+		WHERE f.id
+		= ff.flight_id
+		AND ff.pltkey = #{pltkey}
+	</select>
+	<sql id="flightPlanAndCompanyAircraft">
+		f.id f_id,
+		f.pilot_username f_pilot_username,f.plan_id
+		f_plan_id,f.model
+		f_model,f.flight_state
+		f_flight_state,f.company_aircraft_id
+		f_company_aircraft_id,f.passenger_count
+		f_passenger_count,f.actual_distance
+		f_actual_distance,f.actual_time
+		f_actual_time,f.actual_fuel
+		f_actual_fuel,f.score f_score,f.point
+		f_point,f.reputation
+		f_reputation,f.start_time f_start_time,f.end_time
+		f_end_time,f.create_time
+		f_create_time,f.create_user
+		f_create_user,f.update_time
+		f_update_time,f.update_user f_update_user,
+		p.id p_id,
+		p.flight_number
+		p_flight_number,p.tail_code
+		p_tail_code,p.dispatcher
+		p_dispatcher,p.company_icao
+		p_company_icao,p.model
+		p_model,p.departure_airport
+		p_departure_airport,p.arrival_airport
+		p_arrival_airport,p.path
+		p_path,p.ticket_price
+		p_ticket_price,p.dct_distance
+		p_dct_distance,p.path_distance
+		p_path_distance,p.plan_altitude
+		p_plan_altitude,p.plan_speed
+		p_plan_speed,p.plan_time
+		p_plan_time,p.plan_fuel
+		p_plan_fuel,p.create_time
+		p_create_time,p.create_user
+		p_create_user,p.update_time
+		p_update_time,p.update_user p_update_user,
+		ca.id ca_id,ca.aircraft_id
+		ca_aircraft_id,ca.aircraft_name
+		ca_aircraft_name,ca.company_icao
+		ca_company_icao,ca.address
+		ca_address,ca.used_life
+		ca_used_life,ca.broken_level
+		ca_broken_level,ca.patterns
+		ca_patterns,ca.is_sale
+		ca_is_sale,ca.is_flying ca_is_flying,ca.price
+		ca_price,ca.create_time
+		ca_create_time,ca.create_user
+		ca_create_user,ca.update_time
+		ca_update_time,ca.update_user
+		ca_update_user
+	</sql>
+	<select id="getByFlightAndPlan" resultMap="FlightPlanDtoResultMap">
+		SELECT
+		<include refid="flightPlanAndCompanyAircraft"></include>
+		FROM
+		t_flight f
+		LEFT JOIN
+		t_plan p
+		ON f.plan_id = p.id
+		LEFT
+		JOIN
+		t_company_aircraft ca
+		ON
+		f.company_aircraft_id = ca.id
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="param1 != null">
+				<if test="param1.pilotUsername != null">
+					AND f.pilot_username = #{param1.pilotUsername}
+				</if>
+				<if test="param1.planId != null">
+					AND f.plan_id = #{param1.planId}
+				</if>
+				<if test="param1.model != null">
+					AND f.model = #{param1.model}
+				</if>
+				<if test="param1.flightState != null">
+					AND f.flight_state = #{param1.flightState}
+				</if>
+				<if test="param1.companyAircraftId != null">
+					AND f.company_aircraft_id = #{param1.companyAircraftId}
+				</if>
+				<if test="param1.passengerCount != null">
+					AND f.passenger_count = #{param1.passengerCount}
+				</if>
+				<if test="param1.actualDistance != null">
+					AND f.actual_distance = #{param1.actualDistance}
+				</if>
+				<if test="param1.actualTime != null">
+					AND f.actual_time = #{param1.actualTime}
+				</if>
+				<if test="param1.actualFuel != null">
+					AND f.actual_fuel = #{param1.actualFuel}
+				</if>
+				<if test="param1.score != null">
+					AND f.score = #{param1.score}
+				</if>
+				<if test="param1.point != null">
+					AND f.point = #{param1.point}
+				</if>
+				<if test="param1.reputation != null">
+					AND f.reputation = #{param1.reputation}
+				</if>
+				<if test="param1.startTime != null">
+					AND f.start_time = #{param1.startTime}
+				</if>
+				<if test="param1.endTime != null">
+					AND f.end_time = #{param1.endTime}
+				</if>
+			</if>
+			<if test="param2 != null">
+				<if test="param2.flightNumber != null">
+					AND p.flight_number = #{param2.flightNumber}
+				</if>
+				<if test="param2.tailCode != null">
+					AND p.tail_code = #{param2.tailCode}
+				</if>
+				<if test="param2.dispatcher != null">
+					AND p.dispatcher = #{param2.dispatcher}
+				</if>
+				<if test="param2.companyIcao != null">
+					AND p.company_icao = #{param2.companyIcao}
+				</if>
+				<if test="param2.model != null">
+					AND p.model = #{param2.model}
+				</if>
+				<if test="param2.departureAirport != null">
+					AND p.departure_airport = #{param2.departureAirport}
+				</if>
+				<if test="param2.arrivalAirport != null">
+					AND p.arrival_airport = #{param2.arrivalAirport}
+				</if>
+				<if test="param2.path != null">
+					AND p.path = #{param2.path}
+				</if>
+				<if test="param2.ticketPrice != null">
+					AND p.ticket_price = #{param2.ticketPrice}
+				</if>
+				<if test="param2.dctDistance != null">
+					AND p.dct_distance = #{param2.dctDistance}
+				</if>
+				<if test="param2.pathDistance != null">
+					AND p.path_distance = #{param2.pathDistance}
+				</if>
+				<if test="param2.planAltitude != null">
+					AND p.plan_altitude = #{param2.planAltitude}
+				</if>
+				<if test="param2.planSpeed != null">
+					AND p.plan_speed = #{param2.planSpeed}
+				</if>
+				<if test="param2.planTime != null">
+					AND p.plan_time = #{param2.planTime}
+				</if>
+				<if test="param2.planFuel != null">
+					AND p.plan_fuel = #{param2.planFuel}
+				</if>
+			</if>
+		</trim>
+		ORDER BY f.create_time DESC
+	</select>
+	
+	<select id="getByFlightAndPlanAndPage" resultMap="FlightPlanDtoResultMap">
+		SELECT
+		<include refid="flightPlanAndCompanyAircraft"></include>
+		FROM
+		t_flight f
+		LEFT JOIN
+		t_plan p
+		ON f.plan_id = p.id
+		LEFT
+		JOIN
+		t_company_aircraft ca
+		ON
+		f.company_aircraft_id = ca.id
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="param1 != null">
+				<if test="param1.pilotUsername != null">
+					AND f.pilot_username = #{param1.pilotUsername}
+				</if>
+				<if test="param1.planId != null">
+					AND f.plan_id = #{param1.planId}
+				</if>
+				<if test="param1.model != null">
+					AND f.model = #{param1.model}
+				</if>
+				<if test="param1.flightState != null">
+					AND f.flight_state = #{param1.flightState}
+				</if>
+				<if test="param1.companyAircraftId != null">
+					AND f.company_aircraft_id = #{param1.companyAircraftId}
+				</if>
+				<if test="param1.passengerCount != null">
+					AND f.passenger_count = #{param1.passengerCount}
+				</if>
+				<if test="param1.actualDistance != null">
+					AND f.actual_distance = #{param1.actualDistance}
+				</if>
+				<if test="param1.actualTime != null">
+					AND f.actual_time = #{param1.actualTime}
+				</if>
+				<if test="param1.actualFuel != null">
+					AND f.actual_fuel = #{param1.actualFuel}
+				</if>
+				<if test="param1.score != null">
+					AND f.score = #{param1.score}
+				</if>
+				<if test="param1.point != null">
+					AND f.point = #{param1.point}
+				</if>
+				<if test="param1.reputation != null">
+					AND f.reputation = #{param1.reputation}
+				</if>
+				<if test="param1.startTime != null">
+					AND f.start_time = #{param1.startTime}
+				</if>
+				<if test="param1.endTime != null">
+					AND f.end_time = #{param1.endTime}
+				</if>
+			</if>
+			<if test="param2 != null">
+				<if test="param2.flightNumber != null">
+					AND p.flight_number = #{param2.flightNumber}
+				</if>
+				<if test="param2.tailCode != null">
+					AND p.tail_code = #{param2.tailCode}
+				</if>
+				<if test="param2.dispatcher != null">
+					AND p.dispatcher = #{param2.dispatcher}
+				</if>
+				<if test="param2.companyIcao != null">
+					AND p.company_icao = #{param2.companyIcao}
+				</if>
+				<if test="param2.model != null">
+					AND p.model = #{param2.model}
+				</if>
+				<if test="param2.departureAirport != null">
+					AND p.departure_airport = #{param2.departureAirport}
+				</if>
+				<if test="param2.arrivalAirport != null">
+					AND p.arrival_airport = #{param2.arrivalAirport}
+				</if>
+				<if test="param2.path != null">
+					AND p.path = #{param2.path}
+				</if>
+				<if test="param2.ticketPrice != null">
+					AND p.ticket_price = #{param2.ticketPrice}
+				</if>
+				<if test="param2.dctDistance != null">
+					AND p.dct_distance = #{param2.dctDistance}
+				</if>
+				<if test="param2.pathDistance != null">
+					AND p.path_distance = #{param2.pathDistance}
+				</if>
+				<if test="param2.planAltitude != null">
+					AND p.plan_altitude = #{param2.planAltitude}
+				</if>
+				<if test="param2.planSpeed != null">
+					AND p.plan_speed = #{param2.planSpeed}
+				</if>
+				<if test="param2.planTime != null">
+					AND p.plan_time = #{param2.planTime}
+				</if>
+				<if test="param2.planFuel != null">
+					AND p.plan_fuel = #{param2.planFuel}
+				</if>
+			</if>
+		</trim>
+		ORDER BY f.create_time DESC
+		LIMIT #{param3.startIndex} ,
+		#{param3.pageSize}
+	</select>
+</mapper>

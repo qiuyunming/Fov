@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.ifsim.vairline.core.company.dao.CompanyDao">
+	<insert id="createCompany" parameterType="org.ifsim.vairline.core.company.domain.Company"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO t_company
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test=" companyIcao !=null">
+				company_icao,
+			</if>
+			<if test=" companyName !=null">
+				company_name,
+			</if>
+			<if test=" logo !=null">
+				logo,
+			</if>
+			<if test=" headquarters !=null">
+				headquarters,
+			</if>
+			<if test=" alliance !=null">
+				alliance,
+			</if>
+			<if test=" funds !=null">
+				funds,
+			</if>
+			<if test=" debts !=null">
+				debts,
+			</if>
+			<if test=" reputation !=null">
+				reputation,
+			</if>
+			<if test=" state !=null">
+				state,
+			</if>
+			<if test=" createUser !=null">
+				create_user,
+			</if>
+			<if test=" updateUser !=null">
+				update_user,
+			</if>
+			<if test=" del !=null">
+				del
+			</if>
+		</trim>
+		VALUES
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test=" companyIcao !=null">
+				#{companyIcao},
+			</if>
+			<if test=" companyName !=null">
+				#{companyName},
+			</if>
+			<if test=" logo !=null">
+				#{logo},
+			</if>
+			<if test=" headquarters !=null">
+				#{headquarters},
+			</if>
+			<if test=" alliance !=null">
+				#{alliance},
+			</if>
+			<if test=" funds !=null">
+				#{funds},
+			</if>
+			<if test=" debts !=null">
+				#{debts},
+			</if>
+			<if test=" reputation !=null">
+				#{reputation},
+			</if>
+			<if test=" state !=null">
+				#{state},
+			</if>
+			<if test=" createUser !=null">
+				#{createUser},
+			</if>
+			<if test=" updateUser !=null">
+				#{updateUser},
+			</if>
+			<if test=" del !=null">
+				#{del}
+			</if>
+		</trim>
+	</insert>
+
+	<delete id="deleteCompany" parameterType="org.ifsim.vairline.core.company.domain.Company">
+		DELETE
+		FROM t_company
+		WHERE id = #{id}
+	</delete>
+
+	<update id="updateCompany" parameterType="org.ifsim.vairline.core.company.domain.Company">
+		UPDATE t_company
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="companyIcao !=null">
+				company_icao = #{companyIcao},
+			</if>
+			<if test="companyName !=null">
+				company_name = #{companyName},
+			</if>
+			<if test="logo !=null">
+				logo = #{logo},
+			</if>
+			<if test="headquarters !=null">
+				headquarters = #{headquarters},
+			</if>
+			<if test="alliance !=null">
+				alliance = #{alliance},
+			</if>
+			<if test="funds !=null">
+				funds = #{funds},
+			</if>
+			<if test="debts !=null">
+				debts = #{debts},
+			</if>
+			<if test="reputation !=null">
+				reputation = #{reputation},
+			</if>
+			<if test="state !=null">
+				state = #{state},
+			</if>
+			<if test="updateTime !=null">
+				update_time = #{updateTime},
+			</if>
+			<if test="updateUser !=null">
+				update_user = #{updateUser},
+			</if>
+			<if test="del !=null">
+				del = #{del},
+			</if>
+		</trim>
+		WHERE id = #{id}
+	</update>
+
+	<select id="getCompany" resultType="org.ifsim.vairline.core.company.domain.Company"
+		parameterType="org.ifsim.vairline.core.company.domain.Company">
+		SELECT *
+		FROM t_company
+		<trim prefix="WHERE" prefixOverrides="AND">
+			AND del = 0
+			<if test="companyIcao !=null">
+				AND company_icao = #{companyIcao}
+			</if>
+			<if test="companyName !=null">
+				AND company_name = #{companyName}
+			</if>
+			<if test="logo !=null">
+				AND logo = #{logo}
+			</if>
+			<if test="headquarters !=null">
+				AND headquarters = #{headquarters}
+			</if>
+			<if test="alliance !=null">
+				AND alliance = #{alliance}
+			</if>
+			<if test="funds !=null">
+				AND funds = #{funds}
+			</if>
+			<if test="debts !=null">
+				AND debts = #{debts}
+			</if>
+			<if test="reputation !=null">
+				AND reputation = #{reputation}
+			</if>
+			<if test="state !=null">
+				AND state = #{state}
+			</if>
+		</trim>
+	</select>
+
+	<select id="getCompanyById" resultType="org.ifsim.vairline.core.company.domain.Company"
+		parameterType="org.ifsim.vairline.core.company.domain.Company">
+		SELECT *
+		FROM t_company
+		WHERE id = #{id} AND del = 0
+	</select>
+	
+	<select id="getByICAO"
+		parameterType="String"
+		resultType="org.ifsim.vairline.core.company.domain.Company">
+		SELECT *
+		FROM t_company
+		WHERE company_icao = #{ICAO}
+	</select>
+</mapper>

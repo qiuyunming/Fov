@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.ifsim.vairline.core.config.dao.ConfigDao">
+	<insert id="create" parameterType="org.ifsim.vairline.core.config.domain.Config"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO
+		t_config
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test=" key != null">
+				`key`,
+			</if>
+			<if test=" value != null">
+				`value`
+			</if>
+		</trim>
+		VALUES
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test=" key != null">
+				#{key},
+			</if>
+			<if test=" value != null">
+				#{value}
+			</if>
+		</trim>
+	</insert>
+
+	<delete id="delete" parameterType="org.ifsim.vairline.core.config.domain.Config">
+		DELETE FROM t_config
+		WHERE
+		id =
+		#{id}
+	</delete>
+
+	<update id="update" parameterType="org.ifsim.vairline.core.config.domain.Config">
+		UPDATE
+		t_config
+		<trim prefix="SET" suffixOverrides=",">
+			<if test=" key != null">
+				`key` = #{key},
+			</if>
+			<if test=" value != null">
+				`value` = #{value},
+			</if>
+		</trim>
+		WHERE id = #{id}
+	</update>
+	<select id="get" parameterType="org.ifsim.vairline.core.config.domain.Config"
+		resultType="org.ifsim.vairline.core.config.domain.Config">
+		SELECT *
+		FROM t_config
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test=" key != null">
+				AND `key` = #{key}
+			</if>
+			<if test=" value != null">
+				AND `value` = #{value}
+			</if>
+		</trim>
+	</select>
+
+	<select id="getById" parameterType="org.ifsim.vairline.core.config.domain.Config"
+		resultType="org.ifsim.vairline.core.config.domain.Config">
+		SELECT *
+		FROM t_config
+		WHERE id = #{id}
+	</select>
+
+	<update id="updateByKey" parameterType="org.ifsim.vairline.core.config.domain.Config">
+		UPDATE
+		t_config
+		SET
+		`value` = #{value}
+		WHERE `key` = #{key}
+	</update>
+
+</mapper>

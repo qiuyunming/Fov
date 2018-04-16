@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.ifsim.vairline.core.user.dao.UserRoleDao">
+
+	<insert id="createUserRole" parameterType="org.ifsim.vairline.core.user.domain.UserRole"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO t_user_role
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="username != null">
+				username,
+			</if>
+			<if test="roleId != null">
+				role_id,
+			</if>
+		</trim>
+		VALUES
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="username != null">
+				#{username},
+			</if>
+			<if test="roleId != null">
+				#{roleId},
+			</if>
+		</trim>
+	</insert>
+
+	<delete id="deleteUserRole" parameterType="org.ifsim.vairline.core.user.domain.UserRole">
+		DELETE FROM
+		t_user_role
+		WHERE id = #{id}
+	</delete>
+
+	<update id="updateUserRole" parameterType="org.ifsim.vairline.core.user.domain.UserRole">
+		UPDATE t_user_role
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="username != null">
+				username = #{username},
+			</if>
+			<if test="roleId != null">
+				role_id = #{roleId},
+			</if>
+		</trim>
+		WHERE id = #{id}
+	</update>
+
+	<select id="getUserRole" parameterType="org.ifsim.vairline.core.user.domain.UserRole"
+		resultType="org.ifsim.vairline.core.user.domain.UserRole">
+		SELECT *
+		FROM t_user_role
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="username != null">
+				AND username = #{username}
+			</if>
+			<if test="roleId != null">
+				AND role_id = #{roleId}
+			</if>
+		</trim>
+	</select>
+
+	<select id="getUserRoleById" parameterType="org.ifsim.vairline.core.user.domain.UserRole"
+		resultType="org.ifsim.vairline.core.user.domain.UserRole">
+		SELECT *
+		FROM t_user_role
+		WHERE id = #{id}
+	</select>
+
+	<select id="getByUserRoleAndRole" resultType="org.ifsim.vairline.core.user.domain.UserRole">
+		SELECT ur.*
+		FROM t_user_role ur,t_role r
+		<trim prefix="WHERE" prefixOverrides="AND">
+			AND ur.role_id = r.id
+			<if test="param1.username != null">
+				AND ur.username = #{param1.username}
+			</if>
+			<if test="param2.name != null">
+				AND r.name = #{param2.name}
+			</if>
+			<if test="param2.type != null">
+				AND r.type = #{param2.type}
+			</if>
+		</trim>
+	</select>
+</mapper>

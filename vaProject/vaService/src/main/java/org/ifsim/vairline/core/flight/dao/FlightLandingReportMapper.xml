@@ -1,0 +1,161 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.ifsim.vairline.core.flight.dao.FlightLandingReportDao">
+	<insert id="createFlightLandingReport"
+		parameterType="org.ifsim.vairline.core.flight.domain.FlightLandingReport"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO t_flight_landing_report
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="flightId != null">
+				flight_id,
+			</if>
+			<if test="pitch != null">
+				pitch,
+			</if>
+			<if test="airspeed != null">
+				airspeed,
+			</if>
+			<if test="vspeed != null">
+				vspeed,
+			</if>
+			<if test="load != null">
+				`load`,
+			</if>
+			<if test="length != null">
+				length,
+			</if>
+			<if test="onGround != null">
+				on_ground,
+			</if>
+			<if test="createUser != null">
+				create_user,
+			</if>
+			<if test="updateUser != null">
+				update_user,
+			</if>
+			<if test="del != null">
+				del,
+			</if>
+		</trim>
+		VALUES
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="flightId != null">
+				#{flightId},
+			</if>
+			<if test="pitch != null">
+				#{pitch},
+			</if>
+			<if test="airspeed != null">
+				#{airspeed},
+			</if>
+			<if test="vspeed != null">
+				#{vspeed},
+			</if>
+			<if test="load != null">
+				#{load},
+			</if>
+			<if test="length != null">
+				#{length},
+			</if>
+			<if test="onGround != null">
+				#{onGround},
+			</if>
+			<if test="createUser != null">
+				#{createUser},
+			</if>
+			<if test="updateUser != null">
+				#{updateUser},
+			</if>
+			<if test="del != null">
+				#{del},
+			</if>
+		</trim>
+	</insert>
+
+	<delete id="deleteFlightLandingReport"
+		parameterType="org.ifsim.vairline.core.flight.domain.FlightLandingReport">
+		DELETE FROM t_flight_landing_report
+		WHERE id = #{id}
+	</delete>
+	<update id="updateFlightLandingReport"
+		parameterType="org.ifsim.vairline.core.flight.domain.FlightLandingReport">
+		UPDATE t_flight_landing_report
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="flightId !=null">
+				flight_id = #{flightId},
+			</if>
+			<if test="pitch !=null">
+				pitch = #{pitch},
+			</if>
+			<if test="airspeed !=null">
+				airspeed = #{airspeed},
+			</if>
+			<if test="vspeed !=null">
+				vspeed = #{vspeed},
+			</if>
+			<if test="load !=null">
+				`load` = #{load},
+			</if>
+			<if test="length !=null">
+				length = #{length},
+			</if>
+			<if test="onGround !=null">
+				on_ground = #{onGround},
+			</if>
+			<if test="updateUser !=null">
+				update_user = #{updateUser},
+			</if>
+			<if test="updateTime !=null">
+				update_time = #{updateTime},
+			</if>
+			<if test="del != null">
+				del = #{del},
+			</if>
+		</trim>
+		WHERE id = #{id}
+	</update>
+	<select id="getFlightLandingReport"
+		parameterType="org.ifsim.vairline.core.flight.domain.FlightLandingReport"
+		resultType="org.ifsim.vairline.core.flight.domain.FlightLandingReport">
+		SELECT *
+		FROM t_flight_landing_report
+		<trim prefix="WHERE" prefixOverrides="AND">
+			AND del = 0
+			<if test="flightId !=null">
+				AND flight_id = #{flightId}
+			</if>
+			<if test="pitch !=null">
+				AND pitch = #{pitch}
+			</if>
+			<if test="airspeed !=null">
+				AND airspeed = #{airspeed}
+			</if>
+			<if test="vspeed !=null">
+				AND vspeed = #{vspeed}
+			</if>
+			<if test="load !=null">
+				AND `load` = #{load}
+			</if>
+			<if test="length !=null">
+				AND length = #{length}
+			</if>
+			<if test="onGround !=null">
+				AND on_ground = #{onGround}
+			</if>
+		</trim>
+	</select>
+	<select id="getFlightLandingReportById"
+		parameterType="org.ifsim.vairline.core.flight.domain.FlightLandingReport"
+		resultType="org.ifsim.vairline.core.flight.domain.FlightLandingReport">
+		SELECT *
+		FROM t_flight_landing_report
+		WHERE id = #{id}
+	</select>
+	
+	<select id="getCountByFlightId" parameterType="Integer" resultType="Integer">
+		SELECT COUNT(id)
+		FROM t_flight_landing_report
+		WHERE flight_id = #{flightId}
+	</select>
+</mapper>

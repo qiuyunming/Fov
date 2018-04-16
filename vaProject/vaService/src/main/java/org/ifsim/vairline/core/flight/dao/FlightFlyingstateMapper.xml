@@ -1,0 +1,576 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.ifsim.vairline.core.flight.dao.FlightFlyingstateDao">
+
+	<insert id="createFlightFlyingstate"
+		parameterType="org.ifsim.vairline.core.flight.domain.FlightFlyingstate"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO t_flight_flyingstate
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="flightId != null">
+				flight_id,
+			</if>
+			<if test="pilotUsername != null">
+				pilot_username,
+			</if>
+			<if test="pltkey != null">
+				pltkey,
+			</if>
+			<if test="serverCmd != null">
+				server_cmd,
+			</if>
+			<if test="serverCmdParm != null">
+				server_cmd_parm,
+			</if>
+			<if test='responderState != null and responderState != "_"'>
+				responder_state,
+			</if>
+			<if test='model != null and model != "________" '>
+				model,
+			</if>
+			<if test="park != null">
+				park,
+			</if>
+			<if test="onGround != null">
+				on_ground,
+			</if>
+			<if test="gndSpeed != null">
+				gnd_speed,
+			</if>
+			<if test="radioAlt != null">
+				radio_alt,
+			</if>
+			<if test="squawk != null">
+				squawk,
+			</if>
+			<if test="comm != null">
+				comm,
+			</if>
+			<if test="pitch != null">
+				pitch,
+			</if>
+			<if test="heading != null">
+				heading,
+			</if>
+			<if test="bank != null">
+				bank,
+			</if>
+			<if test="altitude != null">
+				altitude,
+			</if>
+			<if test="latitude != null">
+				latitude,
+			</if>
+			<if test="longitude != null">
+				longitude,
+			</if>
+			<if test="airspeed != null">
+				airspeed,
+			</if>
+			<if test="flaps != null">
+				flaps,
+			</if>
+			<if test="spoiler != null">
+				spoiler,
+			</if>
+			<if test="gear != null">
+				gear,
+			</if>
+			<if test="throttle1 != null">
+				throttle1,
+			</if>
+			<if test="throttle2 != null">
+				throttle2,
+			</if>
+			<if test="throttle3 != null">
+				throttle3,
+			</if>
+			<if test="throttle4 != null">
+				throttle4,
+			</if>
+			<if test="smoke != null">
+				smoke,
+			</if>
+			<if test="lights != null">
+				lights,
+			</if>
+			<if test=" vSpeed != null">
+				v_speed,
+			</if>
+			<if test=" load != null ">
+				`load`,
+			</if>
+			<if test=" del != null">
+				del,
+			</if>
+		</trim>
+		VALUES
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="flightId != null">
+				#{flightId},
+			</if>
+			<if test="pilotUsername != null">
+				#{pilotUsername},
+			</if>
+			<if test="pltkey != null">
+				#{pltkey},
+			</if>
+			<if test="serverCmd != null">
+				#{serverCmd},
+			</if>
+			<if test="serverCmdParm != null">
+				#{serverCmdParm},
+			</if>
+			<if test='responderState != null and responderState != "_"'>
+				#{responderState},
+			</if>
+			<if test='model != null and model != "________" '>
+				#{model},
+			</if>
+			<if test="park != null">
+				#{park},
+			</if>
+			<if test="onGround != null">
+				#{onGround},
+			</if>
+			<if test="gndSpeed != null">
+				#{gndSpeed},
+			</if>
+			<if test="radioAlt != null">
+				#{radioAlt},
+			</if>
+			<if test="squawk != null">
+				#{squawk},
+			</if>
+			<if test="comm != null">
+				#{comm},
+			</if>
+			<if test="pitch != null">
+				#{pitch},
+			</if>
+			<if test="heading != null">
+				#{heading},
+			</if>
+			<if test="bank != null">
+				#{bank},
+			</if>
+			<if test="altitude != null">
+				#{altitude},
+			</if>
+			<if test="latitude != null">
+				#{latitude},
+			</if>
+			<if test="longitude != null">
+				#{longitude},
+			</if>
+			<if test="airspeed != null">
+				#{airspeed},
+			</if>
+			<if test="flaps != null">
+				#{flaps},
+			</if>
+			<if test="spoiler != null">
+				#{spoiler},
+			</if>
+			<if test="gear != null">
+				#{gear},
+			</if>
+			<if test="throttle1 != null">
+				#{throttle1},
+			</if>
+			<if test="throttle2 != null">
+				#{throttle2},
+			</if>
+			<if test="throttle3 != null">
+				#{throttle3},
+			</if>
+			<if test="throttle4 != null">
+				#{throttle4},
+			</if>
+			<if test="smoke != null">
+				#{smoke},
+			</if>
+			<if test="lights != null">
+				#{lights},
+			</if>
+			<if test=" vSpeed != null">
+				#{vSpeed},
+			</if>
+			<if test=" load != null ">
+				#{load},
+			</if>
+			<if test=" del != null">
+				#{del},
+			</if>
+		</trim>
+	</insert>
+
+	<delete id="deleteFlightFlyingstate"
+		parameterType="org.ifsim.vairline.core.flight.domain.FlightFlyingstate">
+		DELETE FROM t_flight_flyingstate
+		WHERE id = #{id}
+	</delete>
+
+	<update id="updateFlightFlyingstate"
+		parameterType="org.ifsim.vairline.core.flight.domain.FlightFlyingstate"
+		flushCache="true">
+		UPDATE t_flight_flyingstate
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="flightId != null">
+				flight_id = #{flightId},
+			</if>
+			<if test="pilotUsername != null">
+				pilot_username = #{pilotUsername},
+			</if>
+			<if test="pltkey != null">
+				pltkey = #{pltkey},
+			</if>
+			<if test="serverCmd != null">
+				server_cmd = #{serverCmd},
+			</if>
+			<if test="serverCmdParm != null">
+				server_cmd_parm = #{serverCmdParm},
+			</if>
+			<if test='responderState != null and responderState != "_"'>
+				responder_state = #{responderState},
+			</if>
+			<if test='model != null and model != "________" '>
+				model = #{model},
+			</if>
+			<if test="park != null">
+				park = #{park},
+			</if>
+			<if test="onGround != null">
+				on_ground = #{onGround},
+			</if>
+			<if test="gndSpeed != null">
+				gnd_speed = #{gndSpeed},
+			</if>
+			<if test="radioAlt != null">
+				radio_alt = #{radioAlt},
+			</if>
+			<if test="squawk != null">
+				squawk = #{squawk},
+			</if>
+			<if test="comm != null">
+				comm = #{comm},
+			</if>
+			<if test="pitch != null">
+				pitch = #{pitch},
+			</if>
+			<if test="heading != null">
+				heading = #{heading},
+			</if>
+			<if test="bank != null">
+				bank = #{bank},
+			</if>
+			<if test="altitude != null">
+				altitude = #{altitude},
+			</if>
+			<if test="latitude != null">
+				latitude = #{latitude},
+			</if>
+			<if test="longitude != null">
+				longitude = #{longitude},
+			</if>
+			<if test="airspeed != null">
+				airspeed = #{airspeed},
+			</if>
+			<if test="flaps != null">
+				flaps = #{flaps},
+			</if>
+			<if test="spoiler != null">
+				spoiler = #{spoiler},
+			</if>
+			<if test="gear != null">
+				gear = #{gear},
+			</if>
+			<if test="throttle1 != null">
+				throttle1 = #{throttle1},
+			</if>
+			<if test="throttle2 != null">
+				throttle2 = #{throttle2},
+			</if>
+			<if test="throttle3 != null">
+				throttle3 = #{throttle3},
+			</if>
+			<if test="throttle4 != null">
+				throttle4 = #{throttle4},
+			</if>
+			<if test="smoke != null">
+				smoke = #{smoke},
+			</if>
+			<if test="lights != null">
+				lights = #{lights},
+			</if>
+			<if test=" vSpeed != null">
+				v_speed = #{vSpeed},
+			</if>
+			<if test=" load != null ">
+				`load` = #{load},
+			</if>
+			<if test="del != null">
+				del = #{del},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime, jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+		WHERE id = #{id}
+	</update>
+
+	<select id="getFlightFlyingstate"
+		parameterType="org.ifsim.vairline.core.flight.domain.FlightFlyingstate"
+		resultType="org.ifsim.vairline.core.flight.domain.FlightFlyingstate">
+		SELECT *
+		FROM t_flight_flyingstate
+		<trim prefix="WHERE" prefixOverrides="AND">
+			AND del = 0
+			<if test="flightId != null">
+				AND flight_id = #{flightId}
+			</if>
+			<if test="pilotUsername != null">
+				AND pilot_username = #{pilotUsername}
+			</if>
+			<if test="pltkey != null">
+				AND pltkey = #{pltkey}
+			</if>
+			<if test="serverCmd != null">
+				AND server_cmd = #{serverCmd}
+			</if>
+			<if test="serverCmdParm != null">
+				AND server_cmd_parm = #{serverCmdParm}
+			</if>
+			<if test='responderState != null and responderState != "_"'>
+				AND responder_state = #{responderState}
+			</if>
+			<if test='model != null and model != "________" '>
+				AND model = #{model}
+			</if>
+			<if test="park != null">
+				AND park = #{park}
+			</if>
+			<if test="onGround != null">
+				AND on_ground = #{onGround}
+			</if>
+			<if test="gndSpeed != null">
+				AND gnd_speed = #{gndSpeed}
+			</if>
+			<if test="radioAlt != null">
+				AND radio_alt = #{radioAlt}
+			</if>
+			<if test="squawk != null">
+				AND squawk = #{squawk}
+			</if>
+			<if test="comm != null">
+				AND comm = #{comm}
+			</if>
+			<if test="pitch != null">
+				AND pitch = #{pitch}
+			</if>
+			<if test="heading != null">
+				AND heading = #{heading}
+			</if>
+			<if test="bank != null">
+				AND bank = #{bank}
+			</if>
+			<if test="altitude != null">
+				AND altitude = #{altitude}
+			</if>
+			<if test="latitude != null">
+				AND latitude = #{latitude}
+			</if>
+			<if test="longitude != null">
+				AND longitude = #{longitude}
+			</if>
+			<if test="airspeed != null">
+				AND airspeed = #{airspeed}
+			</if>
+			<if test="flaps != null">
+				AND flaps = #{flaps}
+			</if>
+			<if test="spoiler != null">
+				AND spoiler = #{spoiler}
+			</if>
+			<if test="gear != null">
+				AND gear = #{gear}
+			</if>
+			<if test="throttle1 != null">
+				AND throttle1 = #{throttle1}
+			</if>
+			<if test="throttle2 != null">
+				AND throttle2 = #{throttle2}
+			</if>
+			<if test="throttle3 != null">
+				AND throttle3 = #{throttle3}
+			</if>
+			<if test="throttle4 != null">
+				AND throttle4 = #{throttle4}
+			</if>
+			<if test="smoke != null">
+				AND smoke = #{smoke}
+			</if>
+			<if test="lights != null">
+				AND lights = #{lights}
+			</if>
+			<if test=" vSpeed != null">
+				AND v_speed = #{vSpeed}
+			</if>
+			<if test=" load != null ">
+				AND `load` = #{load}
+			</if>
+		</trim>
+	</select>
+
+	<select id="getFlightFlyingstateById"
+		parameterType="org.ifsim.vairline.core.flight.domain.FlightFlyingstate"
+		resultType="org.ifsim.vairline.core.flight.domain.FlightFlyingstate">
+		SELECT *
+		FROM t_flight_flyingstate
+		WHERE id = #{id}
+	</select>
+
+	<update id="updateFlightFlyingstateByPltkey"
+		parameterType="org.ifsim.vairline.core.flight.domain.FlightFlyingstate"
+		flushCache="true">
+		UPDATE t_flight_flyingstate
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="flightId != null">
+				flight_id = #{flightId},
+			</if>
+			<if test="pilotUsername != null">
+				pilot_username = #{pilotUsername},
+			</if>
+			<if test="pltkey != null">
+				pltkey = #{pltkey},
+			</if>
+			<if test="serverCmd != null">
+				server_cmd = #{serverCmd},
+			</if>
+			<if test="serverCmdParm != null">
+				server_cmd_parm = #{serverCmdParm},
+			</if>
+			<if test='responderState != null and responderState != "_"'>
+				responder_state = #{responderState},
+			</if>
+			<if test='model != null and model != "________" '>
+				model = #{model},
+			</if>
+			<if test="park != null">
+				park = #{park},
+			</if>
+			<if test="onGround != null">
+				on_ground = #{onGround},
+			</if>
+			<if test="gndSpeed != null">
+				gnd_speed = #{gndSpeed},
+			</if>
+			<if test="radioAlt != null">
+				radio_alt = #{radioAlt},
+			</if>
+			<if test="squawk != null">
+				squawk = #{squawk},
+			</if>
+			<if test="comm != null">
+				comm = #{comm},
+			</if>
+			<if test="pitch != null">
+				pitch = #{pitch},
+			</if>
+			<if test="heading != null">
+				heading = #{heading},
+			</if>
+			<if test="bank != null">
+				bank = #{bank},
+			</if>
+			<if test="altitude != null">
+				altitude = #{altitude},
+			</if>
+			<if test="latitude != null">
+				latitude = #{latitude},
+			</if>
+			<if test="longitude != null">
+				longitude = #{longitude},
+			</if>
+			<if test="airspeed != null">
+				airspeed = #{airspeed},
+			</if>
+			<if test="flaps != null">
+				flaps = #{flaps},
+			</if>
+			<if test="spoiler != null">
+				spoiler = #{spoiler},
+			</if>
+			<if test="gear != null">
+				gear = #{gear},
+			</if>
+			<if test="throttle1 != null">
+				throttle1 = #{throttle1},
+			</if>
+			<if test="throttle2 != null">
+				throttle2 = #{throttle2},
+			</if>
+			<if test="throttle3 != null">
+				throttle3 = #{throttle3},
+			</if>
+			<if test="throttle4 != null">
+				throttle4 = #{throttle4},
+			</if>
+			<if test="smoke != null">
+				smoke = #{smoke},
+			</if>
+			<if test="lights != null">
+				lights = #{lights},
+			</if>
+			<if test=" vSpeed != null">
+				v_speed = #{vSpeed},
+			</if>
+			<if test=" load != null ">
+				`load`= #{load},
+			</if>
+			<if test="del != null">
+				del = #{del},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime, jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+		WHERE pltkey = #{pltkey}
+	</update>
+
+	<select id="getFlightFlyingstateAndFlightNumber"
+		resultType="org.ifsim.vairline.core.flight.domain.FlightFlyingstateResponse">
+		SELECT p.flight_number,ff.*
+		FROM t_flight_flyingstate ff
+		LEFT JOIN t_flight f ON f.id = ff.flight_id
+		LEFT JOIN t_plan p ON
+		f.plan_id = p.id
+		WHERE ff.del = 0
+	</select>
+
+	<delete id="deleteFlightFlyingstateByPltKey" parameterType="Integer">
+		DELETE FROM t_flight_flyingstate
+		WHERE pltkey = #{pltkey}
+	</delete>
+
+	<select id="getOverTime" resultType="Integer" parameterType="Integer">
+		select a.id from(SELECT
+		id ,
+		TIMESTAMPDIFF(SECOND,update_time,NOW())
+		time
+		FROM
+		t_flight_flyingstate ff
+		) a
+		WHERE a.time>#{maxTime}
+	</select>
+
+	<delete id="deleteMore">
+		DELETE FROM t_flight_flyingstate
+		WHERE id in(
+		<foreach collection="ids" separator="," item="id">
+			#{id}
+		</foreach>
+		)
+	</delete>
+</mapper>

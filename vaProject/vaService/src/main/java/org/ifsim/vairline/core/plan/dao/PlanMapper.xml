@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.ifsim.vairline.core.plan.dao.PlanDao">
+	<insert id="createPlan" parameterType="org.ifsim.vairline.core.plan.domain.Plan"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO t_plan
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="flightNumber != null">
+				flight_number,
+			</if>
+			<if test="tailCode != null">
+				tail_code,
+			</if>
+			<if test="dispatcher != null">
+				dispatcher,
+			</if>
+			<if test="companyIcao != null">
+				company_icao,
+			</if>
+			<if test="model != null">
+				model,
+			</if>
+			<if test="departureAirport != null">
+				departure_airport,
+			</if>
+			<if test="arrivalAirport != null">
+				arrival_airport,
+			</if>
+			<if test="path != null">
+				path,
+			</if>
+			<if test="ticketPrice != null">
+				ticket_price,
+			</if>
+			<if test="dctDistance != null">
+				dct_distance,
+			</if>
+			<if test="pathDistance != null">
+				path_distance,
+			</if>
+			<if test="planAltitude != null">
+				plan_altitude,
+			</if>
+			<if test="planSpeed != null">
+				plan_speed,
+			</if>
+			<if test="planTime != null">
+				plan_time,
+			</if>
+			<if test="planFuel != null">
+				plan_fuel,
+			</if>
+			<if test="createUser != null">
+				create_user,
+			</if>
+			<if test="updateUser != null">
+				update_user,
+			</if>
+			<if test="del != null">
+				del,
+			</if>
+		</trim>
+		VALUES
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="flightNumber != null">
+				#{flightNumber},
+			</if>
+			<if test="tailCode != null">
+				#{tailCode},
+			</if>
+			<if test="dispatcher != null">
+				#{dispatcher},
+			</if>
+			<if test="companyIcao != null">
+				#{companyIcao},
+			</if>
+			<if test="model != null">
+				#{model},
+			</if>
+			<if test="departureAirport != null">
+				#{departureAirport},
+			</if>
+			<if test="arrivalAirport != null">
+				#{arrivalAirport},
+			</if>
+			<if test="path != null">
+				#{path},
+			</if>
+			<if test="ticketPrice != null">
+				#{ticketPrice},
+			</if>
+			<if test="dctDistance != null">
+				#{dctDistance},
+			</if>
+			<if test="pathDistance != null">
+				#{pathDistance},
+			</if>
+			<if test="planAltitude != null">
+				#{planAltitude},
+			</if>
+			<if test="planSpeed != null">
+				#{planSpeed},
+			</if>
+			<if test="planTime != null">
+				#{planTime},
+			</if>
+			<if test="planFuel != null">
+				#{planFuel},
+			</if>
+			<if test="createUser != null">
+				#{createUser},
+			</if>
+			<if test="updateUser != null">
+				#{updateUser},
+			</if>
+			<if test="del != null">
+				#{del},
+			</if>
+		</trim>
+	</insert>
+
+	<delete id="deletePlan" parameterType="org.ifsim.vairline.core.plan.domain.Plan">
+		DELETE FROM t_plan
+		WHERE id
+		= #{id}
+	</delete>
+
+	<update id="updatePlan" parameterType="org.ifsim.vairline.core.plan.domain.Plan">
+		UPDATE t_plan
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="flightNumber != null">
+				flight_number = #{flightNumber},
+			</if>
+			<if test="tailCode != null">
+				tail_code = #{tailCode},
+			</if>
+			<if test="dispatcher != null">
+				dispatcher = #{dispatcher},
+			</if>
+			<if test="companyIcao != null">
+				company_icao = #{companyIcao},
+			</if>
+			<if test="model != null">
+				model = #{model},
+			</if>
+			<if test="departureAirport != null">
+				departure_airport = #{departureAirport},
+			</if>
+			<if test="arrivalAirport != null">
+				arrival_airport = #{arrivalAirport},
+			</if>
+			<if test="path != null">
+				path = #{path},
+			</if>
+			<if test="ticketPrice != null">
+				ticket_price = #{ticketPrice},
+			</if>
+			<if test="dctDistance != null">
+				dct_distance = #{dctDistance},
+			</if>
+			<if test="pathDistance != null">
+				path_distance = #{pathDistance},
+			</if>
+			<if test="planAltitude != null">
+				plan_altitude = #{planAltitude},
+			</if>
+			<if test="planSpeed != null">
+				plan_speed = #{planSpeed},
+			</if>
+			<if test="planTime != null">
+				plan_time = #{planTime},
+			</if>
+			<if test="planFuel != null">
+				plan_fuel = #{planFuel},
+			</if>
+			<if test="updateUser != null">
+				update_user = #{updateUser},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime},
+			</if>
+			<if test="del != null">
+				del = #{del},
+			</if>
+		</trim>
+		WHERE id = #{id}
+	</update>
+
+	<select id="getPlan" resultType="org.ifsim.vairline.core.plan.domain.Plan"
+		parameterType="org.ifsim.vairline.core.plan.domain.Plan">
+		SELECT *
+		FROM t_plan
+		<trim prefix="WHERE" prefixOverrides="AND">
+			AND del = 0
+			<if test="flightNumber != null">
+				AND flight_number = #{flightNumber}
+			</if>
+			<if test="tailCode != null">
+				AND tail_code = #{tailCode}
+			</if>
+			<if test="dispatcher != null">
+				AND dispatcher = #{dispatcher}
+			</if>
+			<if test="companyIcao != null">
+				AND company_icao = #{companyIcao}
+			</if>
+			<if test="model != null">
+				AND model = #{model}
+			</if>
+			<if test="departureAirport != null">
+				AND departure_airport = #{departureAirport}
+			</if>
+			<if test="arrivalAirport != null">
+				AND arrival_airport = #{arrivalAirport}
+			</if>
+			<if test="path != null">
+				AND path = #{path}
+			</if>
+			<if test="ticketPrice != null">
+				AND ticket_price = #{ticketPrice}
+			</if>
+			<if test="dctDistance != null">
+				AND dct_distance = #{dctDistance}
+			</if>
+			<if test="pathDistance != null">
+				AND path_distance = #{pathDistance}
+			</if>
+			<if test="planAltitude != null">
+				AND plan_altitude = #{planAltitude}
+			</if>
+			<if test="planSpeed != null">
+				AND plan_speed = #{planSpeed}
+			</if>
+			<if test="planTime != null">
+				AND plan_time = #{planTime}
+			</if>
+			<if test="planFuel != null">
+				AND plan_fuel = #{planFuel}
+			</if>
+		</trim>
+		ORDER BY create_time DESC
+	</select>
+
+	<select id="getPlanById" resultType="org.ifsim.vairline.core.plan.domain.Plan"
+		parameterType="org.ifsim.vairline.core.plan.domain.Plan">
+		SELECT *
+		FROM t_plan
+		WHERE id = #{id}
+	</select>
+	
+	<select id="getPlanByFlightAndPlan" resultType="org.ifsim.vairline.core.plan.domain.Plan">
+		SELECT p.*
+		FROM t_flight f,t_plan p
+		<trim prefix = "WHERE" prefixOverrides = "AND">
+			AND f.plan_id  =  p.id
+			<if test = "param1.pilotUsername != null">
+				AND f.pilot_username = #{param1.pilotUsername}
+			</if>
+			<if test = "param1.planId != null">
+				AND f.plan_id = #{param1.planId}
+			</if>
+			<if test = "param1.model != null">
+				AND f.model = #{param1.model}
+			</if>
+			<if test="param1.flightState != null">
+				AND f.flight_state = #{param1.flightState}
+			</if>
+			<if test = "param1.companyAircraftId != null">
+				AND f.company_aircraft_id = #{param1.companyAircraftId}
+			</if>
+			<if test = "param1.passengerCount != null">
+				AND f.passenger_count = #{param1.passengerCount}
+			</if>
+			<if test = "param1.actualDistance != null">
+				AND f.actual_distance = #{param1.actualDistance}
+			</if>
+			<if test = "param1.actualTime != null">
+				AND f.actual_time = #{param1.actualTime}
+			</if>
+			<if test = "param1.actualFuel != null">
+				AND f.actual_fuel = #{param1.actualFuel}
+			</if>
+			<if test = "param1.score != null">
+				AND f.score = #{param1.score}
+			</if>
+			<if test = "param1.point != null">
+				AND f.point = #{param1.point}
+			</if>
+			<if test = "param1.reputation != null">
+				AND f.reputation = #{param1.reputation}
+			</if>
+			<if test="param1.startTime != null">
+				AND f.start_time = #{param1.startTime}
+			</if>
+			<if test="param1.endTime != null">
+				AND f.end_time = #{param1.endTime}
+			</if>
+			<if test="param2.flightNumber != null">
+				AND p.flight_number = #{param2.flightNumber}
+			</if>
+			<if test="param2.tailCode != null">
+				AND p.tail_code = #{param2.tailCode}
+			</if>
+			<if test="param2.dispatcher != null">
+				AND p.dispatcher = #{param2.dispatcher}
+			</if>
+			<if test="param2.companyIcao != null">
+				AND p.company_icao = #{param2.companyIcao}
+			</if>
+			<if test="param2.model != null">
+				AND p.model = #{param2.model}
+			</if>
+			<if test="param2.departureAirport != null">
+				AND p.departure_airport = #{param2.departureAirport}
+			</if>
+			<if test="param2.arrivalAirport != null">
+				AND p.arrival_airport = #{param2.arrivalAirport}
+			</if>
+			<if test="param2.path != null">
+				AND p.path = #{param2.path}
+			</if>
+			<if test="param2.ticketPrice != null">
+				AND p.ticket_price = #{param2.ticketPrice}
+			</if>
+			<if test="param2.dctDistance != null">
+				AND p.dct_distance = #{param2.dctDistance}
+			</if>
+			<if test="param2.pathDistance != null">
+				AND p.path_distance = #{param2.pathDistance}
+			</if>
+			<if test="param2.planAltitude != null">
+				AND p.plan_altitude = #{param2.planAltitude}
+			</if>
+			<if test="param2.planSpeed != null">
+				AND p.plan_speed = #{param2.planSpeed}
+			</if>
+			<if test="param2.planTime != null">
+				AND p.plan_time = #{param2.planTime}
+			</if>
+			<if test="param2.planFuel != null">
+				AND p.plan_fuel = #{param2.planFuel}
+			</if>
+		</trim>
+		ORDER BY f.create_time DESC
+	</select>
+</mapper>

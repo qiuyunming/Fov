@@ -1,0 +1,773 @@
+/* head */
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.main-wapper {
+	min-width: 1200px;
+}
+/* @media ( min-width : 1200px) {
+	.container {
+		width: 1200px;
+	}
+} */
+.container {
+	width: 1200px;
+}
+
+.head-nav-bar {
+	position: relative;
+	background-color: #27a5fd;
+	width: 100%;
+	height: 62px;
+	z-index: 500;
+}
+
+.logo_wapper {
+	margin-left: 15px;
+	margin-top: 16px;
+}
+
+.nav-bar-list {
+	height: 100%;
+}
+
+.nav-bar-list ul {
+	height: 100%;
+	padding: 0;
+	float: left;
+	margin: 0;
+	padding: 15px 0 15px 0;
+}
+
+.nav-bar-list li {
+	display: block;
+	float: left;
+	margin-right: 30px;
+}
+
+.nav-bar-list a {
+	text-decoration: none;
+	vertical-align: center;
+}
+
+.nav-bar-list li>a {
+	line-height: 30px;
+	font-family: "微软雅黑";
+	font-size: 16px;
+	color: #fff;
+}
+
+.nav-bar-list .button-group {
+	padding: 11px 0 12px 0;
+}
+
+.nav-bar-list .head-button {
+	display: inline-block;
+	text-align: center;
+	width: 100px;
+	height: 38px;
+	font-family: "微软雅黑";
+	font-size: 16px;
+	color: #fff;
+	border-radius: 4px;
+	border: 0px;
+	line-height: 35px;
+}
+
+.nav-bar-list .head-button.active {
+	/*margin-left:22px;*/
+	background: #fff;
+	color: #27a5fd;
+}
+
+/* 头像 */
+.img-head-wapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	border-radius: 50%;
+}
+
+.img-head-wapper.large {
+	width: 130px;
+	height: 130px;
+}
+
+.img-head-wapper.middle {
+	width: 80px;
+	height: 80px;
+}
+
+.img-head-wapper.small {
+	width: 46px;
+	height: 46px;
+}
+
+.img-head-wapper.tiny {
+	width: 32px;
+	height: 32px;
+}
+/* 消息提示小红点 */
+.msg_remind {
+	position: relative;
+	top: -6px;
+	left: -4px;
+	display: inline-block;
+	width: 8px;
+	height: 8px;
+	background-color: #f01414;
+	border-radius: 50%;
+	display: inline-block;
+}
+
+.white {
+	color: #fff;
+}
+
+.black {
+	color: #333;
+}
+
+.grey {
+	color: #999;
+}
+
+.wrapper-dropdown-panel {
+	position: relative;
+	height: 100%;
+}
+
+.wrapper-dropdown-panel:hover .dropdown-panel {
+	display: block;
+}
+
+.dropdown-panel {
+	display: none;
+	position: absolute;
+	width: 200px;
+	height: 125px;
+	right: 0px;
+	top: 62px;
+	background-color: #fff;
+	border: 1px solid #eee;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	/* box-shadow: 2px 5px 15px #27a5fd; */
+	padding: 15px;
+	z-index: 1000;
+}
+
+.dropdown-panel:hover {
+	display: block;
+}
+
+.divider {
+	height: 1px;
+	margin: 9px 0;
+	overflow: hidden;
+	background-color: #e5e5e5;
+}
+/* all-companies */
+input {
+	outline: none;
+}
+
+button {
+	outline: none;
+}
+
+input::-webkit-input-placeholder {
+	color: #bcbcbc;
+	font-size: 14px
+}
+
+input:-moz-input-placeholder {
+	color: #bcbcbc;
+}
+
+input::-moz-input-placeholder {
+	color: #bcbcbc;
+}
+
+.panel-search {
+	position: relative;
+	height: 50px;
+	box-shadow: 0 1px 15px #eaeaea;
+}
+
+.panel-search .wapper-search {
+	display: -webkit-flex;
+	display: flex;
+	-webkit-align-items: center;
+	align-items: center;
+	width: 218px;
+	height: 100%;
+}
+
+.input-search {
+	display: block;
+	width: 215px;
+	height: 30px;
+	border: 0;
+}
+
+.panel-main {
+	min-height: 100vh;
+	background: #f5f5f5;
+}
+
+.title {
+	font-size: 26px;
+	font-family: 微软雅黑;
+	color: #27a5fd;
+}
+
+.small {
+	color: #999;
+}
+
+.button {
+	position: relative;
+	display: inline-block;
+	width: 88px;
+	height: 32px;
+	border-radius: 5px;
+	border: 0;
+	background-color: #ececec;
+	text-align: center;
+	line-height: 28px;
+	text-decoration: none;
+}
+
+.button:hover {
+	text-decoration: none;
+}
+
+.button:visited {
+	text-decoration: none;
+}
+
+.button.button-blue {
+	color: #fff;
+	background-color: #27a5fd;
+}
+
+.button.button-red {
+	color: #fff;
+	background-color: #fd2727;
+}
+
+.button.button-yellow {
+	color: #fff;
+	background-color: #fec04e;
+}
+
+.button.button-box {
+	width: 32px;
+}
+
+.button.flat {
+	width: 84px;
+	height: 28px;
+}
+
+.button.button-small {
+	width: 78px;
+	height: 26px;
+}
+
+/*每个导航的图标*/
+.navbar-company:nth-child(1) .nav-logo {
+	background-image: url('../images/gongsi.png');
+}
+
+.navbar-company.active:nth-child(1) .nav-logo {
+	background-image: url('../images/gongsi_active.png');
+}
+
+.navbar-company:nth-child(2) .nav-logo {
+	background-image: url('../images/renwu.png');
+}
+
+.navbar-company.active:nth-child(2) .nav-logo {
+	background-image: url('../images/renwu_active.png');
+}
+
+.navbar-company:nth-child(3) .nav-logo {
+	background-image: url('../images/guanli.png');
+}
+
+.navbar-company.active:nth-child(3) .nav-logo {
+	background-image: url('../images/guanli_active.png');
+}
+
+.panel-all-company {
+	/*margin-top: 18px;*/
+	
+}
+
+.panel-all-company .panel-item-company {
+	display: block;
+	width: 939px;
+	height: 150px;
+	margin: 15px 0 15px 0;
+	background-color: #fff;
+	border-radius: 5px;
+	border: 1px solid #dcdcdc;
+}
+
+.panel-item-company .wapper-company-logo {
+	float: left;
+	display: flex;
+	height: 100%;
+	width: 270px;
+	align-items: center;
+	justify-content: center;
+	padding: 15px;
+}
+
+.panel-item-company .wapper-company-logo img {
+	max-height: 100%;
+	max-width: 100%;
+}
+
+.slide-flag {
+	display: inline-block;
+	float: left;
+	width: 4px;
+	height: 24px;
+	margin: 24px 0 0 -4px;
+}
+
+.slide-flag.active {
+	background-color: #27a5fd;
+}
+
+.main-company-info {
+	position: relative;
+	display: inline-block;
+	float: left;
+	width: 378px;
+	height: 100%;
+	padding: 24px 0 0 24px;
+	border-right: 1px solid #dcdcdc
+}
+
+.main-company-info .name-main {
+	font-size: 18px;
+	color: #333;
+}
+
+.main-company-info .name-sub {
+	/*color: #999;*/
+	
+}
+
+.main-company-info .other {
+	color: #666;
+	font-size: 14px;
+}
+
+.sub-company-info {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 24px 30px 0 30px;
+	overflow: hidden;
+}
+
+.sub-company-info .row-info {
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	margin-bottom: 20px;
+}
+
+.sub-company-info .item-info .value-info {
+	margin-left: 10px;
+}
+
+/* foot */
+.foot {
+	padding-bottom: 30px;
+	background: #3F3F3F;
+	text-align: center;
+}
+
+.foot-wapper>img {
+	margin-top: 50px;
+	margin-bottom: 30px;
+}
+
+.foot-wapper-a>a {
+	font-family: "微软雅黑";
+	font-size: 14px;
+	color: #fff;
+	text-decoration-line: none;
+	margin-bottom: 20px;
+	margin-left: 24px;
+}
+
+.foot-wapper-b {
+	color: #bababa;
+}
+
+.foot-wapper-b>a {
+	font-family: "微软雅黑";
+	font-size: 12px;
+	margin-right: 12px;
+	margin-left: 12px;
+	color: #bababa;
+	text-decoration-line: none;
+}
+
+.foot-wapper-c1 {
+	margin-top: 50px;
+	font-family: "微软雅黑";
+	font-size: 14px;
+	color: #fff;
+}
+
+.foot-wapper-c2 {
+	font-family: "微软雅黑";
+	font-size: 14px;
+	color: #fff;
+}
+
+/* 公司管理导航栏 */
+.navbar-company {
+	width: 200px;
+	background-color: #ececec;
+	border: 1px solid #dcdcdc;
+	margin: 0 0 15px 0;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+.navbar-company-main {
+	display: -webkit-flex;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	height: 100px;
+	border-radius: 5px;
+}
+
+.navbar-company .nav-top {
+	display: flex;
+	margin-top: 8px;
+	width: 100%;
+	justify-content: space-between;
+}
+
+.navbar-company .nav-title {
+	margin-top: 2px;
+	color: #999;
+}
+
+.navbar-company .navbar-right-flag {
+	width: 12px;
+	height: 12px;
+	background-image: url('../images/yuan.png');
+	margin-right: 8px
+}
+
+.navbar-company .nav-logo {
+	width: 48px;
+	height: 48px;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.navbar-company .nav-buttom-flag {
+	width: 24px;
+	height: 4px;
+	background-color: transparent;
+}
+
+.navbar-company.active {
+	background-color: #fff;
+	box-shadow: 2px 5px 15px #ececec;
+	border: 1px solid #eee;
+}
+
+.navbar-company.active .navbar-company-main {
+	background-color: #fff;
+	box-shadow: 0px 5px 15px #ececec;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+
+.navbar-company.active .nav-title {
+	color: #333;
+}
+
+.navbar-company.active .navbar-right-flag {
+	background-image: url('../images/yuan_active.png');
+}
+
+.navbar-company.active .nav-buttom-flag {
+	background-color: #27a5fd;
+}
+
+.navbar-company ul.navbar-sub {
+	list-style: none;
+	list-style-position: outside;
+	margin: 0;
+	padding: 0;
+}
+
+.navbar-company ul.navbar-sub {
+	display: none;
+}
+
+.navbar-company.active .navbar-sub li {
+	height: 30px;
+	font-size: 14px;
+	color: #27a5fd;
+	line-height: 30px;
+}
+
+.navbar-company.active .navbar-sub li:hover {
+	color: #fff;
+	background-color: #27a5fd;
+}
+
+.navbar-company.active .navbar-sub li.active {
+	color: #fff;
+	background-color: #27a5fd;
+}
+
+/* 非hover */
+.navbar-company .navbar-sub li {
+	height: 30px;
+	font-size: 14px;
+	color: #27a5fd;
+	line-height: 30px;
+}
+
+.navbar-company .navbar-sub li:hover {
+	color: #fff;
+	background-color: #27a5fd;
+}
+
+.navbar-company .navbar-sub li.active {
+	color: #fff;
+	background-color: #27a5fd;
+}
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus
+	{
+	background-color: #27a5fd;
+}
+
+/*staff mannager*/
+.tab-pane-top .nav-sub {
+	
+}
+
+.tab-pane-top .nav-sub a {
+	position: relative;
+	width: 40px;
+	text-decoration: none;
+	margin-right: 40px;
+	font-size: 14px;
+	color: #333;
+}
+
+.tab-pane-top .nav-sub a:hover {
+	color: #333;
+	font-weight: bold;
+}
+
+.tab-pane-top .nav-sub a:hover:after {
+	content: '';
+	position: absolute;
+	top: auto;
+	bottom: -6px;
+	left: 20%;
+	height: 3px;
+	width: 40px;
+	background-color: #27a5fd;
+}
+
+.tab-pane-top .nav-sub a.active {
+	color: #333;
+	font-weight: bold;
+}
+
+.tab-pane-top .nav-sub a.active:after {
+	content: '';
+	position: absolute;
+	top: auto;
+	bottom: -6px;
+	left: 20%;
+	height: 3px;
+	width: 40px;
+	background-color: #27a5fd;
+}
+
+.tab-pane-main .item-block {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	position: relative;
+	float: left;
+	width: 454px;
+	height: 150px;
+	margin: 15px;
+	padding: 24px;
+	border-radius: 5px;
+	background-color: #fff;
+	box-shadow: 2px 3px 10px #ececec;
+	border: 1px solid #eee;
+}
+
+.tab-pane-main .item-block:after {
+	content: '';
+	position: absolute;
+	top: 24px;
+	/*bottom: -6px;*/
+	left: 0;
+	height: 24px;
+	width: 4px;
+	background-color: #27a5fd;
+}
+
+.wrapper-head {
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+}
+
+.wrapper-head .head {
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+}
+
+.wrapper-name-call {
+	display: inline-block;
+	margin-left: 12px;
+}
+
+.wrapper-name-call .name {
+	font-size: 14px;
+	color: #333;
+}
+
+.wrapper-name-call .call {
+	font-size: 12px;
+	color: #666;
+}
+
+.wrapper-rank {
+	margin-top: 10px;
+}
+
+.wrapper-data {
+	margin-left: 45px;
+}
+
+.wrapper-data .row-data {
+	position: relative;
+	display: inline-block;
+	vertical-align: bottom;
+}
+
+.wrapper-data .col-data {
+	display: inline-block;
+	width: 65px;
+	margin-right: 16px;
+}
+
+.wrapper-usual-plane {
+	display: flex;
+	width: 164px;
+	justify-content: space-between;
+}
+
+.wrapper-data .col-data .icon {
+	margin-right: 10px;
+}
+
+.wrapper-checkbox {
+	position: relative;
+	width: 20px;
+	height: 20px;
+	border: 1px solid #bebebe;
+	border-radius: 5px;
+	cursor: pointer;
+	color: #27a5fd;
+}
+
+input[type="checkbox"] {
+	position: absolute;
+	opacity: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	cursor: pointer;
+}
+
+input[type="checkbox"]:checked+[class*=" icon-"] {
+	visibility: visible;
+}
+
+.warpper-img-apply-status {
+	position: absolute;
+	right: 0;
+	top: 4px;
+}
+
+.img-apply-status {
+	width: 100%;
+	height: 100%;
+}
+
+.pointer {
+	cursor: pointer;
+}
+
+.tab-content {
+	padding-bottom: 15px;
+}
+
+.pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover,
+	.pagination>.active>span:hover, .pagination>.active>a:focus,
+	.pagination>.active>span:focus {
+	background-color: #27a5fd;
+}
+
+.wrapper-input-dropdown-list {
+	position: relative;
+}
+
+.wrapper-input-dropdown-list>.input-dropdown-list {
+	position: absolute;
+	display: none;
+	list-style: none;
+	width: 100%;
+	background-color: #fff;
+	border: 1px solid #eee;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	z-index: 1000;
+}
+
+.input-dropdown-list li {
+	display: block;
+	padding: 5px;
+	padding-left: 10px;
+	/* border: 1px solid #eee; */
+	cursor: pointer;
+}
+
+.input-dropdown-list li:hover {
+	background-color: #27a5fd;
+	color: #fff;
+}

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.ifsim.vairline.core.aircraft.dao.AircraftDao">
+	<insert id="createAircraft" parameterType="org.ifsim.vairline.core.aircraft.domain.Aircraft"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO t_aircraft
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="model!=null">
+				model,
+			</if>
+			<if test="logo!=null">
+				logo,
+			</if>
+			<if test="photo!=null">
+				photo,
+			</if>
+			<if test="totalLife!=null">
+				total_life,
+			</if>
+			<if test="requiredLicenseLevel!=null">
+				required_license_level,
+			</if>
+			<if test="maxPassenger!=null">
+				max_passenger,
+			</if>
+			<if test="maxCargo!=null">
+				max_cargo,
+			</if>
+			<if test="price!=null">
+				price,
+			</if>
+			<if test="createUser!=null">
+				create_user,
+			</if>
+			<if test="updateUser!=null">
+				update_user,
+			</if>
+			<if test="del!=null">
+				del,
+			</if>
+		</trim>
+		VALUES
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="model!=null">
+				#{model},
+			</if>
+			<if test="logo!=null">
+				#{logo},
+			</if>
+			<if test="photo!=null">
+				#{photo},
+			</if>
+			<if test="totalLife!=null">
+				#{totalLife},
+			</if>
+			<if test="requiredLicenseLevel!=null">
+				#{requiredLicenseLevel},
+			</if>
+			<if test="maxPassenger!=null">
+				#{maxPassenger},
+			</if>
+			<if test="maxCargo!=null">
+				#{maxCargo},
+			</if>
+			<if test="price!=null">
+				#{price},
+			</if>
+			<if test="createUser!=null">
+				#{createUser},
+			</if>
+			<if test="updateUser!=null">
+				#{updateUser},
+			</if>
+			<if test="del!=null">
+				#{del},
+			</if>
+		</trim>
+	</insert>
+
+	<delete id="deleteAircraft" parameterType="org.ifsim.vairline.core.aircraft.domain.Aircraft">
+		DELETE FROM t_aircraft
+		WHERE id = #{id}
+	</delete>
+
+	<update id="updateAircraft" parameterType="org.ifsim.vairline.core.aircraft.domain.Aircraft">
+		UPDATE t_aircraft
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="model!=null">
+				model = #{model},
+			</if>
+			<if test="logo!=null">
+				logo = #{logo},
+			</if>
+			<if test="photo!=null">
+				photo = #{photo},
+			</if>
+			<if test="totalLife!=null">
+				total_life = #{totalLife},
+			</if>
+			<if test="requiredLicenseLevel!=null">
+				required_license_level = #{requiredLicenseLevel},
+			</if>
+			<if test="maxPassenger!=null">
+				max_passenger = #{maxPassenger},
+			</if>
+			<if test="maxCargo!=null">
+				max_cargo = #{maxCargo},
+			</if>
+			<if test="price!=null">
+				price = #{price},
+			</if>
+			<if test="updateTime!=null">
+				update_time = #{updateTime},
+			</if>
+			<if test="updateUser!=null">
+				update_user = #{updateUser},
+			</if>
+			<if test="del!=null">
+				del = #{del},
+			</if>
+		</trim>
+		WHERE id = #{id}
+	</update>
+	<select id="getAircraft" parameterType="org.ifsim.vairline.core.aircraft.domain.Aircraft"
+		resultType="org.ifsim.vairline.core.aircraft.domain.Aircraft">
+		SELECT *
+		FROM t_aircraft
+		<trim prefix="WHERE" prefixOverrides="AND">
+			AND del = 0
+			<if test="model!=null">
+				AND model = #{model}
+			</if>
+			<if test="logo!=null">
+				AND logo = #{logo}
+			</if>
+			<if test="photo!=null">
+				AND photo = #{photo}
+			</if>
+			<if test="totalLife!=null">
+				AND total_life = #{totalLife}
+			</if>
+			<if test="requiredLicenseLevel!=null">
+				AND required_license_level = #{requiredLicenseLevel}
+			</if>
+			<if test="maxPassenger!=null">
+				AND max_passenger = #{maxPassenger}
+			</if>
+			<if test="maxCargo!=null">
+				AND max_cargo = #{maxCargo}
+			</if>
+			<if test="price!=null">
+				AND price = #{price}
+			</if>
+		</trim>
+	</select>
+
+	<select id="getAircraftById" parameterType="org.ifsim.vairline.core.aircraft.domain.Aircraft"
+		resultType="org.ifsim.vairline.core.aircraft.domain.Aircraft">
+		SELECT *
+		FROM t_aircraft
+		WHERE id = #{id}
+	</select>
+
+	<select id="getLikeModel" parameterType="String"
+		resultType="org.ifsim.vairline.core.aircraft.domain.Aircraft">
+		SELECT *
+		FROM t_aircraft
+		WHERE
+		model like
+		CONCAT(#{param1},'%')
+		ORDER BY model
+		LIMIT 0,15
+	</select>
+</mapper>
