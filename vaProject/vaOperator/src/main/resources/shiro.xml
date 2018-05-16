@@ -24,9 +24,14 @@
 
 	<bean id="jdbcRealm" class="org.ifsim.vairline.web.auth.ShiroRealm">
 		<property name="credentialsMatcher">
-			<bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
-				<property name="hashAlgorithmName" value="MD5"></property>
-				<property name="hashIterations" value="1024"></property>
+			<!-- <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher"> -->
+			<!-- <property name="hashAlgorithmName" value="MD5"></property> -->
+			<!-- <property name="hashIterations" value="1024"></property> -->
+			<!-- </bean> -->
+			<bean
+				class="org.ifsim.vairline.web.auth.RetryLimitHashedCredentialsMatcher">
+				<!-- <property name="hashAlgorithmName" value="MD5"></property> -->
+				<!-- <property name="hashIterations" value="1024"></property> -->
 			</bean>
 		</property>
 	</bean>

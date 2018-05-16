@@ -33,7 +33,7 @@ public class FlightFlyingClearner extends Thread {
 	public void run() {
 		CommonUtil.sleep(180 * 1000);
 		while (flag) {
-			Integer ids[] = flightFlyingstateService.getOverTime(60);
+			Integer ids[] = flightFlyingstateService.getOverTime(600);
 			if (ids.length > 0) {
 				flightFlyingstateService.deleteMore(ids);
 			}

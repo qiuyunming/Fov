@@ -83,13 +83,13 @@
 					localStorage.NavRTES = JSON.stringify(resp);
 					setTimeout(function(){
 						addNAVRTELine(resp);
-					},30);
+					},3000);
 				});  
 			}else{
 				var obj = eval("("+NavRTES+")");
 				setTimeout(function(){
 					addNAVRTELine(obj);
-				},30);
+				},3000);
 				
 			}
 			
@@ -380,7 +380,7 @@
 				if(map.getZoom()<8){
 					setTimeout(function(){
 						map.setZoom(8);
-					},400);
+					},4000);
 				}
 			});
 
@@ -389,7 +389,7 @@
 
 		setTimeout(function(){
 			map.reset();
-		},150);
+		},3000);
 
 		map.addEventListener('moveend',function(){		//地图移动监听
 			updateAID();
@@ -422,7 +422,7 @@
 					if(zoom<10){
 						setTimeout(function(){
 							map.setZoom(10)
-						},500)
+						},5000)
 					}
 					map.panTo(con.PlanePoint)
 				});

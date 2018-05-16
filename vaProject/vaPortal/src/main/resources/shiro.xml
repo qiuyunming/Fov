@@ -13,9 +13,13 @@
 
 	<bean id="jdbcRealm" class="org.ifsim.vairline.web.auth.ShiroRealm">
 		<property name="credentialsMatcher">
-			<bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
-				<property name="hashAlgorithmName" value="MD5"></property>
-				<property name="hashIterations" value="1024"></property>
+			<!-- <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher"> -->
+			<!-- <property name="hashAlgorithmName" value="MD5"></property> -->
+			<!-- <property name="hashIterations" value="1024"></property> -->
+			<!-- </bean> -->
+			<bean class="org.ifsim.vairline.web.auth.RetryLimitHashedCredentialsMatcher">
+				<!-- <property name="hashAlgorithmName" value="MD5"></property> -->
+				<!-- <property name="hashIterations" value="1024"></property> -->
 			</bean>
 		</property>
 	</bean>
@@ -49,14 +53,14 @@
 				/map/** = anon
 				/company/show = anon
 				/flight/all_flight/** = anon
-				
+
 				/community/writer/** = user
 				/community/doWrite = user
 				/community/submit_comment = user
 				/community/delete_comment = user
 				/community/do_tendency = user
 				/community/** = anon
-				
+
 				/user/** = user
 				/radar/** = user,roleOR["admin,董事,经理,副经理,a1,a2,a3"]
 
