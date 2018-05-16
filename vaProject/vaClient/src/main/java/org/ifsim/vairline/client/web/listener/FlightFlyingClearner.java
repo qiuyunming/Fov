@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  * @date 2017年12月27日 下午7:55:47
  * @version V1.0
  */
-@Component
+//@Component
 public class FlightFlyingClearner extends Thread {
 
 	@Autowired
