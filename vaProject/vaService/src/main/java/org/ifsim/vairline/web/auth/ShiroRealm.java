@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.annotation.PostConstruct;
+
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -15,7 +17,6 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
-import org.apache.shiro.web.servlet.ShiroHttpSession;
 import org.ifsim.vairline.common.storage.QiniuStorage;
 import org.ifsim.vairline.common.storage.ThumbModel;
 import org.ifsim.vairline.core.role.domain.Role;
@@ -60,6 +61,7 @@ public class ShiroRealm extends AuthorizingRealm {
 			targetUser.setPhoto(QiniuStorage.getUrl(targetUser.getPhoto(),ThumbModel.THUMB_256));
 		}else {
 			targetUser = null;
+			
 		}
 		
 		// 密码加盐（盐值为用户名）
@@ -98,5 +100,13 @@ public class ShiroRealm extends AuthorizingRealm {
 		return info;
 	}
 	
-
+	/** 
+     * 设定Password校验. 
+     */  
+    @PostConstruct  
+    public void initCredentialsMatcher() {  
+//该句作用是重写shiro的密码验证，让shiro用我自己的验证  
+        setCredentialsMatcher(new RetryLimitHashedCredentialsMatcher());  
+  
+    }  
 }

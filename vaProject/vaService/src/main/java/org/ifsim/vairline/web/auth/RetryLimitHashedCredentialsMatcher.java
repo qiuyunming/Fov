@@ -16,7 +16,7 @@ import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+import org.apache.shiro.authc.credential.SimpleCredentialsMatcher;
 
 /**
  * <功能描述>
@@ -26,7 +26,7 @@ import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
  * @date 2018年5月12日 下午11:07:12
  * @since JDK 1.8
  */
-public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher {
+public class RetryLimitHashedCredentialsMatcher extends SimpleCredentialsMatcher {
     @Override
     public boolean doCredentialsMatch(AuthenticationToken token, AuthenticationInfo info) {
         // String username = (String) token.getPrincipal();
@@ -39,7 +39,8 @@ public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher
         // pwdhash);
         String inputCredential = CipherUtil.generatePassword(String.valueOf(autoken.getPassword()));
         // 生成的加密是大写，但mysql不区分大小写，对比会失败
-        String accountCredentials = info.getCredentials().toString().toLowerCase();
+        String accountCredentials = (String.valueOf(getCredentials(info))).toLowerCase();
+//                info.getCredentials().toString().toLowerCase();
         boolean match = equals(inputCredential, accountCredentials);
         if (match) {
             // passwordRetryCache.remove(username);

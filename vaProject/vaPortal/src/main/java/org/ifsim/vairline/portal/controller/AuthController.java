@@ -8,7 +8,6 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.ifsim.vairline.common.consts.WebState;
-import org.ifsim.vairline.common.util.ShiroUtil;
 import org.ifsim.vairline.core.role.domain.Role;
 import org.ifsim.vairline.core.role.service.IRoleService;
 import org.ifsim.vairline.core.user.domain.User;
